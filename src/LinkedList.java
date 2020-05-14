@@ -10,19 +10,19 @@ public class LinkedList {
         Node (int d){
             data = d;
             next = null;
-
-
         }
 
-        // creating a method DealWithUnderflow wich simply checks if the list is empty will create a new node at index 1
-        Node DealWithUnderflow(){
-            return new LinkedList.Node(1);
+        // creating a method DealWithUnderflow which simply creates a new list with a new node at index 1
+        LinkedList DealWithUnderflow(){
+            // returning a new linked list with a Node
+            LinkedList list = new LinkedList();
+            list.head = new LinkedList.Node(1);
+            return list;
         }
-        
-        // creating a method DealWithOverflow which simply sets the head to null and data to 0. therefore emptying the list down to the head
-        void DealWithOverflow() {
-            data = 0;
-            next = null;
+
+        //Creating a methd DealWithUnderflow which simply will result in the process being abandoned as the list would be full
+        LinkedList DealWithOverflow() {
+            return null;
         }
 
     }
