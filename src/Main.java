@@ -44,5 +44,18 @@ public class Main {
         +----+------+     +----+------+     +----+------+
         | 1  |  o-------->| 2  |  o-------->|  3 | null |
         +----+------+     +----+------+     +----+------+ */
+
+         //list1.head.push(list1.head, 12);
+
+        // creating a new list with the push method
+        LinkedList list2 = new LinkedList();
+
+        list2.head.push(list2.head,2);
+        list2.head.push(list2.head,4);
+        list2.head.push(list2.head,3);
+        list2.head.push(list2.head,7);
+        list2.head.push(list2.head,1);
+
+
     }
 }

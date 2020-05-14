@@ -1,3 +1,4 @@
+//this class creates a singly linked list
 public class LinkedList {
     static Node head; //the head of the linked list
     static class Node{
@@ -28,7 +29,7 @@ public class LinkedList {
 
         /* given a reference to the head of a list and an int,
         this new "push" method will insert a new node to the front of the list*/
-        public void push(int new_data)
+        public void push(Node head, int new_data)
         {
 
             /* 1. alloc the Node and put data*/
@@ -44,13 +45,15 @@ public class LinkedList {
         //this push method will add a new node as demonstrated below
         /*
 
-          new head       previous head           second node
-             |                |                  |
-             |                |                  |
-         +----+------+     +----+------+     +----+------+
-         | 1  | null |     | 2  | null |     |  3 | null |
-         +----+------+     +----+------+     +----+------+
+          new head/Node       previous head/Node     second node  ......    Nth node + 1
+             |                |                       |                      |
+             |                |                       |                      |
+         +----+------+     +----+------+            +----+------+         +------+------+
+         | 1  | null |     | 2  | null |            |  3 | null |         |  n+1 | null |
+         +----+------+     +----+------+            +----+------+  .....  +------+------+
+
          */
+
 
     }
 }
