@@ -12,8 +12,6 @@ public class LinkedList {
             data = d;
             next = null;
         }
-
-
     }
     // creating a method DealWithUnderflow which simply creates a new list with a new node at index 1
     LinkedList DealWithUnderflow(){
@@ -94,15 +92,55 @@ public class LinkedList {
 
     //this push method will add a new node as demonstrated below
         /*
-          new head/Node       previous head/Node     second node  ......    Nth node + 1
+          new head/Node       previous head/Node     second node + 1......  Nth node + 1
              |                |                       |                      |
              |                |                       |                      |
          +----+------+     +----+------+            +----+------+         +------+------+
-         | 1  | null |     | 2  | null |            |  3 | null |         |  n+1 | null |
+         | 1  |  o-------->| 2  |  o--------------->|  3 |   o-------->   |  n+1 | null | -------> null
          +----+------+     +----+------+            +----+------+  .....  +------+------+
          */
-    // any future methods for list traversal insertions and deletions.
 
+    /*
+    the following function will insert a new node after a given node
+     */
+    public void insertAfter(Node prev_node, int new_data){
+
+        //checking if the given list is null i.e. dealWithUnderflow
+        if (prev_node == null){
+            DealWithUnderflow();
+        }
+        else {
+            // allocating the node and adding the new data
+            Node new_node = new Node(new_data);
+            // making the next node of the the New node set as the previous node
+            new_node.next = prev_node.next;
+            // adding the node into the specified previous node
+            prev_node.next = new_node;
+        }
+    }
+    //this insert after method will add a new node as demonstrated below
+        /*
+                                            new node
+                                               |
+                                               |
+                                             +----+------+
+                                             |  n |   o  |
+                                             +----+---|--+
+                                               / \    |
+                                                |     |
+          new head/Node         node n          |     |        node + 1       Nth node + 1
+             |                   |              |     |        |                      |
+             |                   |              |     |        |                      |
+         +----+------+  ...   +----+------+     |     |     +----+------+  ....   +------+------+
+         | 1  |  o-------->   | n   |  o---------     |---->| n+2|   o-------->  |  n+1  | null | -------> null
+         +----+------+  ...   +----+------+                 +----+------+  .....  +------+------+
+         */
+
+        /*
+            the following funcion will add a new node at the end of the linked list
+        */
+        
 }
+
 
 
