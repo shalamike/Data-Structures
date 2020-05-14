@@ -12,7 +12,7 @@ public class LinkedList {
             data = d;
             next = null;
         }
-        
+
 
     }
     // creating a method DealWithUnderflow which simply creates a new list with a new node at index 1
