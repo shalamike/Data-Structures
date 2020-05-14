@@ -31,14 +31,12 @@ public class LinkedList {
 
         //this push method will add a new node as demonstrated below
         /*
-
           new head/Node       previous head/Node     second node  ......    Nth node + 1
              |                |                       |                      |
              |                |                       |                      |
          +----+------+     +----+------+            +----+------+         +------+------+
          | 1  | null |     | 2  | null |            |  3 | null |         |  n+1 | null |
          +----+------+     +----+------+            +----+------+  .....  +------+------+
-
          */
 
     }
@@ -103,6 +101,33 @@ public class LinkedList {
         /* 3. Move the head to point to new Node */
         head = new_Node;
     }
+    /* given a reference to the head of a list and an int,
+        this new "push" method will insert a new node to the front of the list*/
+    //overridden method push with two inputs including head
+    public void push(Node head, int new_data)
+    {
 
+        /* 1. alloc the Node and put data*/
+        Node new_Node = new Node(new_data);
+
+        /* 2. Make next of new Node as head */
+        new_Node.next = head;
+
+        /* 3. Move the head to point to new Node */
+        head = new_Node;
+    }
+
+    //this push method will add a new node as demonstrated below
+        /*
+          new head/Node       previous head/Node     second node  ......    Nth node + 1
+             |                |                       |                      |
+             |                |                       |                      |
+         +----+------+     +----+------+            +----+------+         +------+------+
+         | 1  | null |     | 2  | null |            |  3 | null |         |  n+1 | null |
+         +----+------+     +----+------+            +----+------+  .....  +------+------+
+         */
     // any future methods for list traversal insertions and deletions.
+
 }
+
+
