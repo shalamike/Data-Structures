@@ -20,9 +20,25 @@ public class LinkedList {
             return list;
         }
 
-        //Creating a methd DealWithUnderflow which simply will result in the process being abandoned as the list would be full
+        //Creating a method DealWithUnderflow which simply will result in the process being abandoned as the list by returning null
         LinkedList DealWithOverflow() {
+            System.out.println("List is full");
             return null;
+        }
+
+        /* given a reference to the head of a list and an int,
+        this new "push" method will insert a new node to the front of the list*/
+        public void push(int new_data)
+        {
+
+            /* 1. alloc the Node and put data*/
+            Node new_Node = new Node(new_data);
+
+            /* 2. Make next of new Node as head */
+            new_Node.next = head;
+
+            /* 3. Move the head to point to new Node */
+            head = new_Node;
         }
 
     }
