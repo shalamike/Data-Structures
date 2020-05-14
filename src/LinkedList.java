@@ -41,5 +41,16 @@ public class LinkedList {
             head = new_Node;
         }
 
+        //this push method will add a new node as demonstrated below
+        /*
+
+          new head       previous head           second node
+             |                |                  |
+             |                |                  |
+         +----+------+     +----+------+     +----+------+
+         | 1  | null |     | 2  | null |     |  3 | null |
+         +----+------+     +----+------+     +----+------+
+         */
+
     }
 }
