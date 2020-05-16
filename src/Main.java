@@ -55,10 +55,10 @@ public class Main {
         // creating a new list with the push method
         LinkedList list2 = new LinkedList();
 
-        list2.push(2);// third index
-        list2.push(3);// second index
-        list2.push(4);//first index
-        list2.push(5);//head
+        list2.InsertFront(2);// third index
+        list2.InsertFront(3);// second index
+        list2.InsertFront(4);//first index
+        list2.InsertFront(5);//head
 
 
         int index = 3;
@@ -68,6 +68,11 @@ public class Main {
         list2.insertAfter(list2.head.next.next, 8);
 
         System.out.println( "Element at index " + index +  " is " +  list2.GetNthPosition(index));
+
+        list2.InsertAtEnd(9);
+        int index2 = 8;
+
+        System.out.println( "Element at the end is " +  list2.GetNthPosition(index2));
 
 
     }

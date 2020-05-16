@@ -5,7 +5,6 @@ public class LinkedList {
         // creating the Node of the linked list
         int data;
         Node next;
-
         // the constructor creates a new node
         // by default next is initiallised as null in the constructor
         Node (int d){
@@ -62,7 +61,7 @@ public class LinkedList {
 
     /* given a reference to the head of a list and an int,
     this new "push" method will insert a new node to the front of the list*/
-    public void push(int new_data)
+    public void InsertFront(int new_data)
     {
 
         /* 1. alloc the Node and put data*/
@@ -76,19 +75,6 @@ public class LinkedList {
     }
     /* given a reference to the head of a list and an int,
         this new "push" method will insert a new node to the front of the list*/
-    //overridden method push with two inputs including head
-    public void push(Node head, int new_data)
-    {
-
-        /* 1. alloc the Node and put data*/
-        Node new_Node = new Node(new_data);
-
-        /* 2. Make next of new Node as head */
-        new_Node.next = head;
-
-        /* 3. Move the head to point to new Node */
-        head = new_Node;
-    }
 
     //this push method will add a new node as demonstrated below
         /*
@@ -106,8 +92,12 @@ public class LinkedList {
     public void insertAfter(Node prev_node, int new_data){
 
         //checking if the given list is null i.e. dealWithUnderflow
-        if (prev_node == null){
+        if ( LinkedList.head == null){
+            System.out.println("the given node cannot be null");
             DealWithUnderflow();
+        }
+        else if(prev_node == null){
+            System.out.println("the given node cannot be null");
         }
         else {
             // allocating the node and adding the new data
@@ -139,7 +129,41 @@ public class LinkedList {
         /*
             the following funcion will add a new node at the end of the linked list
         */
-        
+
+    public void InsertAtEnd(int new_data) {
+        Node new_node = new Node(new_data);
+        // checking iff the list is empty
+        if (LinkedList.head == null) {
+            DealWithUnderflow();
+        } else {
+            // making sure the node after the new node is null as this is going to be the last node
+            new_node.next = null;
+            //setting the parameters to traverse till the last node of the list
+            Node LastNode = head;
+            // while loop that terminates untill the next element/Node is null (last element/Node)
+            while (LastNode.next != null){
+                //setting the last node to the one after it if one exists
+                LastNode = LastNode.next;
+            }
+            //setting the link from the last Node to the New node inserted
+            LastNode.next = new_node;
+            return;
+        }
+    }
+
+
+
+//this push method will add a new node as demonstrated below
+        /*
+          head/Node         2nd node + 1  .....      Nth Node                New End Node
+             |                |                       |                      |
+             |                |                       |                      |
+         +----+------+     +----+------+            +----+------+         +------+------+
+         | 1  |  o-------->| 2  |  o--------------->| Nth|   o-------->   |  n+1 | null | -------> null
+         +----+------+     +----+------+            +----+------+  .....  +------+------+
+         */
+
+
 }
 
 
