@@ -159,7 +159,7 @@ public class LinkedList {
          */
 
         // creating a function that prints the contents of a linked list
-    public void PrintList(){
+    public void printList(){
         // setting the pointer to the head
         Node Pointer = head;
         // creating an empty string that will fill with all nodes in a list

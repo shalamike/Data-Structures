@@ -10,6 +10,8 @@ public class CircularlLinkedList {
              ------------------------------------------------------------
 
      */
+     // declaring the current head and tail pointers as null where the tail is the last element of the list
+     static Node head,tail;
      //creating the Node
      static class Node{
          // creating the Node of the linked list
@@ -22,8 +24,55 @@ public class CircularlLinkedList {
              next = null;
          }
      }
-     // declaring the current head and tail pointers as null
-     public Node head = null;
-     public Node tail = null;
-     
+    CircularlLinkedList DealWithUnderflow(){
+        // returning a new linked list with a Node
+        CircularlLinkedList list = new CircularlLinkedList();
+        return list;
+    }
+    //Creating a method DealWithUnderflow which simply will result in the process being abandoned as the list by returning null
+    CircularlLinkedList DealWithOverflow() {
+        System.out.println("List is full");
+        return null;
+    }
+     // adding a node at the end of the list
+    public void AddAtTail(int data){
+         //creatnig the node to be added
+        Node newNode = new Node(data);
+        if (head == null){
+            //if the list is empty both the head and tail will point to the new node
+            head = newNode;
+            tail = newNode;
+            newNode.next = head;
+        }
+        else{
+            // the tail will point to a new node
+            tail.next = newNode;
+            // setting the tail node to the new node
+            tail = newNode;
+            // since its a circular linked list, the tail will point to the head
+            tail.next = head;
+        }
+    }
+
+    public void printList() {
+        // settiing the pointer to the head
+         Node pointer = head;
+        if(head == null) {
+            System.out.println("List is empty");
+        }
+        else {
+            // setting the pointer to the next element
+            System.out.println("Nodes of the circular linked list: ");
+            //
+            String listToBePrinted = "";
+            while(pointer!= tail){
+                //adding the pointer data to the string after each loop untill it reaches the head again
+                listToBePrinted += pointer.data + " ";
+                pointer = pointer.next;
+            }
+            listToBePrinted += pointer.data;
+            System.out.println(listToBePrinted);
+        }
+    }
 }
+

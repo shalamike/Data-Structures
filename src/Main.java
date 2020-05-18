@@ -75,12 +75,22 @@ public class Main {
         list2.PrintList();*/
 
         list2.InsertFront(1);
-        list2.PrintList();
+        list2.printList();
         list2.insertAfter(list2.head, 2);
-        list2.PrintList();
+        list2.printList();
         list2.InsertAtEnd(3);
-        list2.PrintList();
+        list2.printList();
         list2.InsertAfterIndex(1,9);
-        list2.PrintList();
+        list2.printList();
+
+        CircularlLinkedList list3 = new CircularlLinkedList();
+        list3.AddAtTail(1);
+        list3.AddAtTail(2);
+        list3.AddAtTail(3);
+        list3.printList();
+
+
+
+
     }
 }
