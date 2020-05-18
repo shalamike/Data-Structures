@@ -63,14 +63,16 @@ public class CircularlLinkedList {
         else {
             // setting the pointer to the next element
             System.out.println("Nodes of the circular linked list: ");
-            //
+            //creating an initially empty string for the list that will have each element added
             String listToBePrinted = "";
             while(pointer!= tail){
                 //adding the pointer data to the string after each loop untill it reaches the head again
                 listToBePrinted += pointer.data + " ";
                 pointer = pointer.next;
             }
+            // adding the tail value to string
             listToBePrinted += pointer.data;
+            // printing list
             System.out.println(listToBePrinted);
         }
     }
