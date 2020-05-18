@@ -90,6 +90,77 @@ public class Main {
         list3.printList();
 
 
+        /*creating a object of  the Binary Tree */
+
+        BinaryTree tree1 = new BinaryTree();
+
+        // creating the root of the node
+        tree1.root = new BinaryTree.Node(1);
+        System.out.println("initial tree with only one Node:");
+        System.out.println(tree1.root.key);
+        System.out.println();
+
+        /*
+        after creaiting our root our tree will appear as follows:
+
+               1
+            /     \
+          null    null
+
+         */
+
+        //now we add in the left and right children of the nodes
+
+        tree1.root.left = new BinaryTree.Node(2);
+        tree1.root.right = new BinaryTree.Node(3);
+
+        System.out.println("Displaying the left child of Node with key value 1");
+        System.out.println(tree1.root.left.key);
+
+        System.out.println();
+
+        System.out.println("Displaying the right child of Node with key value 1");
+        System.out.println(tree1.root.right.key);
+        System.out.println();
+
+
+
+        /*
+        where 2 and three becomse the left and right child of the node respectively
+
+                     1
+                  /    \
+                2        3
+              /  \     /   \
+            null null null null
+
+         */
+        // now to add a new node with value 4 as the left child of 2
+        tree1.root.left.left = new BinaryTree.Node(4);
+
+        /*
+        Now that the Node with value 2 has a new child 4 on its left,
+        the three will now look like this
+
+                              1
+                           /     \
+                         2         3
+                       /   \     /   \
+                     4    null null null
+                   /   \
+                 null  null
+
+
+         */
+
+        System.out.println("displaying the left child of Node with value 2:");
+
+        System.out.println(tree1.root.left.left.key);
+
+
+
+
+
 
 
     }
