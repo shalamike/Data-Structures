@@ -16,7 +16,6 @@ public class LinkedList {
     LinkedList DealWithUnderflow(){
         // returning a new linked list with a Node
         LinkedList list = new LinkedList();
-        list.head = new LinkedList.Node(1);
         return list;
     }
 
