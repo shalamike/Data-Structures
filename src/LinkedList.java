@@ -88,23 +88,22 @@ public class LinkedList {
     /*
     the following function will insert a new node after a given node
      */
-    public void insertAfter(Node prev_node, int new_data){
-
+    public void insertAfter(Node Pointer, int new_data){
         //checking if the given list is null i.e. dealWithUnderflow
         if ( LinkedList.head == null){
             System.out.println("the given node cannot be null");
             DealWithUnderflow();
         }
-        else if(prev_node == null){
+        else if(Pointer == null){
             System.out.println("the given node cannot be null");
         }
         else {
             // allocating the node and adding the new data
             Node new_node = new Node(new_data);
-            // making the next node of the the New node set as the previous node
-            new_node.next = prev_node.next;
+            // making the next node of the the New node set as the pointer node
+            new_node.next = Pointer.next;
             // adding the node into the specified previous node
-            prev_node.next = new_node;
+            Pointer.next = new_node;
         }
     }
     //this insert after method will add a new node as demonstrated below
@@ -130,6 +129,7 @@ public class LinkedList {
         */
 
     public void InsertAtEnd(int new_data) {
+        // creating a new node
         Node new_node = new Node(new_data);
         // checking iff the list is empty
         if (LinkedList.head == null) {
@@ -137,19 +137,19 @@ public class LinkedList {
         } else {
             // making sure the node after the new node is null as this is going to be the last node
             new_node.next = null;
-            //setting the parameters to traverse till the last node of the list
-            Node LastNode = head;
-            // while loop that terminates untill the next element/Node is null (last element/Node)
-            while (LastNode.next != null){
+            //setting the pointer to the start of the list
+            Node Pointer = head;
+            // looping through the list untill the pointer reaches the end of the list
+            while (Pointer.next != null){
                 //setting the last node to the one after it if one exists
-                LastNode = LastNode.next;
+                Pointer = Pointer.next;
             }
-            //setting the link from the last Node to the New node inserted
-            LastNode.next = new_node;
+            //linking the new lement to the last element of the list
+            Pointer.next = new_node;
             return;
         }
     }
-//this insert at end method will add a new node at the end of the list
+        //this insert at end method will add a new node at the end of the list
         /*
           head/Node         2nd node + 1  .....      Nth Node                New End Node
              |                |                       |                      |
@@ -161,21 +161,75 @@ public class LinkedList {
 
         // creating a function that prints the contents of a linked list
     public void PrintList(){
-        Node DisplayNode = head;
+        // setting the pointer to the head
+        Node Pointer = head;
+        // creating an empty string that will fill with all nodes in a list
         String DisplayString = "";
-        if (DisplayNode == null){
+        // checking to see if the given list is empty
+        if (Pointer == null){
             DealWithUnderflow();
         }
         else{
-            while (DisplayNode != null){
-                DisplayString += DisplayNode.data + " ";
-                DisplayNode = DisplayNode.next;
+            //cycling through the list until it reaches the end (null pointer)
+            while (Pointer != null){
+                // adding the element to a string
+                DisplayString += Pointer.data + " ";
+                // setting the pointer to the next node
+                Pointer = Pointer.next;
             }
         }
         System.out.println("Displaying all Nodes in the following list:" );
         System.out.println(DisplayString);
     }
 
+    public void InsertAfterIndex(int index, int new_data){
+        // setting the pointer to the start of the list
+        Node Pointer = head;
+        // checking to see if list is empty
+        if (Pointer == null){
+            DealWithUnderflow();
+        }
+        else{
+            for (int i = 0; i < index; i++){
+                // checking if the pointer is currently pointing to a valid node as it cycles through the list
+                if(Pointer != null){
+                    // setting the pointer to the next element of the list
+                    Pointer = Pointer.next;
+                }
+                else{
+                    System.out.println("index doesnt exist");
+                    return;
+                }
+                // allocating the node and adding the new data
+            }
+            Node new_node = new Node(new_data);
+            // making the next node of the the New node set as the pointer node
+            new_node.next = Pointer.next;
+            // adding the node into the specified previous node
+            Pointer.next = new_node;
+        }
+    }
+
+        /*
+                                            new node
+                                               |
+                                               |
+                                             +----+------+
+                                             |  n |   o  |
+                                             +----+---|--+
+                                               / \    |
+                                                |     |
+          Node at index 0    node at index 1    |     |      node at index 2 + 1       Nth node at index n + 1
+             |                   |              |     |        |                      |
+             |                   |              |     |        |                      |
+         +----+------+  ...   +----+------+     |     |     +----+------+  ....   +------+------+
+         | 1  |  o-------->   | n   |  o---------     |---->| n+2|   o-------->  |  n+1  | null | -------> null
+         +----+------+  ...   +----+------+                 +----+------+  .....  +------+------+
+         */
+
+        /*
+            the following funcion will add a new node at the end of the linked list
+        */
 }
 
 

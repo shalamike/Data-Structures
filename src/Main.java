@@ -7,9 +7,9 @@ public class Main {
         LinkedList list1 = new LinkedList();
 
         // adding Nodes starting with the head
-        list1.head = new LinkedList.Node(1);
-        LinkedList.Node second = new LinkedList.Node(2);
-        LinkedList.Node third = new LinkedList.Node(3);
+        //list1.head = new LinkedList.Node(1);
+        //LinkedList.Node second = new LinkedList.Node(2);
+        //LinkedList.Node third = new LinkedList.Node(3);
 /*
 
          the three nodes have been allocated dynamically,
@@ -23,7 +23,7 @@ public class Main {
          +----+------+     +----+------+     +----+------+
 */
 
-        list1.head.next = second; // setting the link from the head node to the second node as shown below
+        //list1.head.next = second; // setting the link from the head node to the second node as shown below
 /*
 
            Now next of the first Node refers to the second.  So they
@@ -37,7 +37,7 @@ public class Main {
         +----+------+     +----+------+     +----+------+
 */
 
-        second.next = third; // setting the link from the second node to the head of the third node as shown below
+        //second.next = third; // setting the link from the second node to the head of the third node as shown below
 /*
 
            Now next of the second Node refers to third.  So all three
@@ -54,14 +54,14 @@ public class Main {
          //list1.head.push(list1.head, 12);
         // creating a new list with the push method
         LinkedList list2 = new LinkedList();
-
+/*
         list2.InsertFront(2);// third index
         list2.InsertFront(3);// second index
         list2.InsertFront(4);//first index
-        list2.InsertFront(5);//head
+        list2.InsertFront(5);//head*/
 
 
-        int index = 3;
+ /*       int index = 3;
         System.out.println( "Element at index " + index +  " is " +  list2.GetNthPosition(index));
         // inserting a node 2 places after the head
         list2.insertAfter(list2.head.next.next, 8);
@@ -71,7 +71,16 @@ public class Main {
         System.out.println( "Element at the end is " +  list2.GetNthPosition(index2));
 
         list2.PrintList();
+        list2.InsertAtIndex(3, 7);
+        list2.PrintList();*/
 
-
+        list2.InsertFront(1);
+        list2.PrintList();
+        list2.insertAfter(list2.head, 2);
+        list2.PrintList();
+        list2.InsertAtEnd(3);
+        list2.PrintList();
+        list2.InsertAfterIndex(1,9);
+        list2.PrintList();
     }
 }
