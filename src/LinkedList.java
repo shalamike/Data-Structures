@@ -63,7 +63,6 @@ public class LinkedList {
     this new "push" method will insert a new node to the front of the list*/
     public void InsertFront(int new_data)
     {
-
         /* 1. alloc the Node and put data*/
         Node new_Node = new Node(new_data);
 
@@ -150,10 +149,7 @@ public class LinkedList {
             return;
         }
     }
-
-
-
-//this push method will add a new node as demonstrated below
+//this insert at end method will add a new node at the end of the list
         /*
           head/Node         2nd node + 1  .....      Nth Node                New End Node
              |                |                       |                      |
@@ -163,6 +159,22 @@ public class LinkedList {
          +----+------+     +----+------+            +----+------+  .....  +------+------+
          */
 
+        // creating a function that prints the contents of a linked list
+    public void PrintList(){
+        Node DisplayNode = head;
+        String DisplayString = "";
+        if (DisplayNode == null){
+            DealWithUnderflow();
+        }
+        else{
+            while (DisplayNode != null){
+                DisplayString += DisplayNode.data + " ";
+                DisplayNode = DisplayNode.next;
+            }
+        }
+        System.out.println("Displaying all Nodes in the following list:" );
+        System.out.println(DisplayString);
+    }
 
 }
 

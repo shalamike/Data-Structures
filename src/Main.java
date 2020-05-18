@@ -63,16 +63,14 @@ public class Main {
 
         int index = 3;
         System.out.println( "Element at index " + index +  " is " +  list2.GetNthPosition(index));
-
         // inserting a node 2 places after the head
         list2.insertAfter(list2.head.next.next, 8);
-
         System.out.println( "Element at index " + index +  " is " +  list2.GetNthPosition(index));
-
         list2.InsertAtEnd(9);
         int index2 = 8;
-
         System.out.println( "Element at the end is " +  list2.GetNthPosition(index2));
+
+        list2.PrintList();
 
 
     }
