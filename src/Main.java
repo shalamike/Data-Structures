@@ -53,12 +53,14 @@ public class Main {
 
          //list1.head.push(list1.head, 12);
         // creating a new list with the push method
+        /*
         LinkedList list2 = new LinkedList();
-/*
+
         list2.InsertFront(2);// third index
         list2.InsertFront(3);// second index
         list2.InsertFront(4);//first index
-        list2.InsertFront(5);//head*/
+        list2.InsertFront(5);//head
+        */
 
 
  /*       int index = 3;
@@ -73,6 +75,7 @@ public class Main {
         list2.PrintList();
         list2.InsertAtIndex(3, 7);
         list2.PrintList();*/
+/*
 
         list2.InsertFront(1);
         list2.printList();
@@ -89,6 +92,7 @@ public class Main {
         list3.AddAtTail(3);
         list3.printList();
 
+*/
 
         /*creating a object of  the Binary Tree */
 
@@ -157,11 +161,46 @@ public class Main {
 
         System.out.println(tree1.root.left.left.key);
 
+        tree1.root.left.right = new BinaryTree.Node(5);
 
+         /*
+        Now that the Node with value 2 has a new child 5 on its right,
+        the three will now look like this
 
+                               1
+                           /      \
+                         2          3
+                       /    \      /   \
+                     4       5   null null
+                   /   \    /   \
+                null null  null null
 
+         we can traverse this binary tree using three different recursive methods:
+         1. Inorder
+            i. we visit the current nodes left subtree untill there are no subtrees left i.e. its null
+            ii. then we visit the root, i.e. access the data of the node we are on
+            iii. after visiting the root, we move onto its right child
+         2. Preorder
+            i. first we visit the root of the tree i.e. access the data of the node we are on
+            ii. after visiting its root, we move to the left child
+            iii. if there is no left child, we move to the right child
+         3. Postorder
+            i. we visit the current nodes left subtree untill there are no subtrees left i.e. its null
+            ii. then we move to the right subtree of our current node and only keep moving to the right
+                if there are no more left subtrees on the current root
+            iii. then we visit the root. i.e. access the data of the node we are on
 
+        by running this program with the three different recursive functions we can see the different out
+         */
 
+         System.out.println("displaying the Inorder traversal of the tree");
+         tree1.printInorder(tree1.root);
+
+         System.out.println("displaying Preorder traversal of the tree");
+         tree1.printPreorder(tree1.root);
+
+         System.out.println("displaying Postorder traversal of the tree");
+         tree1.printPostorder(tree1.root);
 
     }
 }

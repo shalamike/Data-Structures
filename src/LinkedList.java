@@ -227,7 +227,7 @@ public class LinkedList {
          */
 
         /*
-            the following funcion will add a new node at the end of the linked list
+            the following function will add a new node at the end of the linked list
         */
 }
 
