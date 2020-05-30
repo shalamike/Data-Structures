@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -51,58 +53,73 @@ public class Main {
         +----+------+     +----+------+     +----+------+
 */
 
+
          //list1.head.push(list1.head, 12);
+
+        /******************************************************************************************************************************/
+
         // creating a new list with the push method
-        /*
-        LinkedList list2 = new LinkedList();
 
-        list2.InsertFront(2);// third index
-        list2.InsertFront(3);// second index
-        list2.InsertFront(4);//first index
-        list2.InsertFront(5);//head
-        */
+//        LinkedList list2 = new LinkedList();
+//        list2.InsertFront(2);// third index
+//        list2.InsertFront(3);// second index
+//        list2.InsertFront(4);//first index
+//        list2.InsertFront(5);//head
+//
+//
+//
+//        int index = 3;
+//        System.out.println( "Element at index " + index +  " is " +  list2.GetNthPosition(index));
+//        // inserting a node 2 places after the head
+//        list2.insertAfter(list2.head.next.next, 8);
+//        System.out.println( "Element at index " + index +  " is " +  list2.GetNthPosition(index));
+//        //inserting a node at the end
+//        list2.InsertAtEnd(9);
+//        //  setting the index to the end
+//        int index2 = 8;
+//        System.out.println( "Element at the end is " +  list2.GetNthPosition(index2));
+//
+//        System.out.println();
+//        System.out.println("inserting new  at the front");
+//        list2.InsertFront(1);
+//        list2.printList();
+//        System.out.println();
+//        System.out.println("inserting new element after the head node");
+//        list2.insertAfter(list2.head, 2);
+//        list2.printList();
+//        System.out.println();
+//        System.out.println("inserting new element at the end");
+//        list2.InsertAtEnd(3);
+//        list2.printList();
+//        System.out.println();
+//        System.out.println("inserting new element after a given index");
+//        list2.InsertAfterIndex(1,9);
+//        list2.printList();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println("deleting elment at index 4");
+//        list2.DeleteNodeAt(4);
+//        list2.printList();
+/******************************************************************************************************************************/
+//        CircularlLinkedList list3 = new CircularlLinkedList();
+//        list3.AddAtTail(1);
+//        list3.AddAtTail(2);
+//        list3.AddAtTail(3);
+//        list3.printList();
 
 
- /*       int index = 3;
-        System.out.println( "Element at index " + index +  " is " +  list2.GetNthPosition(index));
-        // inserting a node 2 places after the head
-        list2.insertAfter(list2.head.next.next, 8);
-        System.out.println( "Element at index " + index +  " is " +  list2.GetNthPosition(index));
-        list2.InsertAtEnd(9);
-        int index2 = 8;
-        System.out.println( "Element at the end is " +  list2.GetNthPosition(index2));
 
-        list2.PrintList();
-        list2.InsertAtIndex(3, 7);
-        list2.PrintList();*/
-/*
-
-        list2.InsertFront(1);
-        list2.printList();
-        list2.insertAfter(list2.head, 2);
-        list2.printList();
-        list2.InsertAtEnd(3);
-        list2.printList();
-        list2.InsertAfterIndex(1,9);
-        list2.printList();
-
-        CircularlLinkedList list3 = new CircularlLinkedList();
-        list3.AddAtTail(1);
-        list3.AddAtTail(2);
-        list3.AddAtTail(3);
-        list3.printList();
-
-*/
+/******************************************************************************************************************************/
 
         /*creating a object of  the Binary Tree */
 
-        BinaryTree tree1 = new BinaryTree();
-
-        // creating the root of the node
-        tree1.root = new BinaryTree.Node(1);
-        System.out.println("initial tree with only one Node:");
-        System.out.println(tree1.root.key);
-        System.out.println();
+//        BinaryTree tree1 = new BinaryTree();
+//
+//        // creating the root of the node
+//        tree1.root = new BinaryTree.Node(1);
+//        System.out.println("initial tree with only one Node:");
+//        System.out.println(tree1.root.info);
+//        System.out.println();
 
         /*
         after creaiting our root our tree will appear as follows:
@@ -115,17 +132,17 @@ public class Main {
 
         //now we add in the left and right children of the nodes
 
-        tree1.root.left = new BinaryTree.Node(2);
-        tree1.root.right = new BinaryTree.Node(3);
-
-        System.out.println("Displaying the left child of Node with key value 1");
-        System.out.println(tree1.root.left.key);
-
-        System.out.println();
-
-        System.out.println("Displaying the right child of Node with key value 1");
-        System.out.println(tree1.root.right.key);
-        System.out.println();
+//        tree1.root.leftlink = new BinaryTree.Node(2);
+//        tree1.root.rightlink = new BinaryTree.Node(3);
+//
+//        System.out.println("Displaying the left child of Node with key value 2" );
+//        System.out.println(tree1.root.leftlink.info);
+//
+//        System.out.println();
+//
+//        System.out.println("Displaying the right child of Node with key value 3" );
+//        System.out.println(tree1.root.rightlink.info);
+//        System.out.println();
 
 
 
@@ -139,8 +156,10 @@ public class Main {
             null null null null
 
          */
+
+
         // now to add a new node with value 4 as the left child of 2
-        tree1.root.left.left = new BinaryTree.Node(4);
+//        tree1.root.leftlink.leftlink= new BinaryTree.Node(4);
 
         /*
         Now that the Node with value 2 has a new child 4 on its left,
@@ -157,11 +176,11 @@ public class Main {
 
          */
 
-        System.out.println("displaying the left child of Node with value 2:");
-
-        System.out.println(tree1.root.left.left.key);
-
-        tree1.root.left.right = new BinaryTree.Node(5);
+//        System.out.println("displaying the left child of Node with value 4" );
+//
+//        System.out.println(tree1.root.leftlink.leftlink.info);
+//
+//        tree1.root.leftlink.rightlink = new BinaryTree.Node(5);
 
          /*
         Now that the Node with value 2 has a new child 5 on its right,
@@ -193,14 +212,44 @@ public class Main {
         by running this program with the three different recursive functions we can see the different out
          */
 
-         System.out.println("displaying the Inorder traversal of the tree");
-         tree1.printInorder(tree1.root);
+//         System.out.println("displaying the Inorder traversal of the tree");
+//         tree1.printInorder(tree1.root);
+//
+//         System.out.println("displaying Preorder traversal of the tree");
+//         tree1.printPreorder(tree1.root);
+//
+//         System.out.println("displaying Postorder traversal of the tree");
+//         tree1.printPostorder(tree1.root);
 
-         System.out.println("displaying Preorder traversal of the tree");
-         tree1.printPreorder(tree1.root);
+         /**********************************************************************************************************/
 
-         System.out.println("displaying Postorder traversal of the tree");
-         tree1.printPostorder(tree1.root);
+         System.out.println("Creating a new tree with the insertNode algorithm");
+         BinaryTree tree2 = new BinaryTree();
+         tree2.insertNode(new BinaryTree.Node(10), tree2.root);
+         tree2.insertNode(new BinaryTree.Node(6), tree2.root);
+         tree2.insertNode(new BinaryTree.Node(4), tree2.root);
+         tree2.insertNode(new BinaryTree.Node(7), tree2.root);
+         tree2.insertNode(new BinaryTree.Node(3), tree2.root);
+         tree2.insertNode(new BinaryTree.Node(9), tree2.root);
+         tree2.insertNode(new BinaryTree.Node(1), tree2.root);
+        tree2.insertNode(new BinaryTree.Node(18), tree2.root);
+        tree2.insertNode(new BinaryTree.Node(13), tree2.root);
+        tree2.insertNode(new BinaryTree.Node(11), tree2.root);
+        tree2.insertNode(new BinaryTree.Node(17), tree2.root);
+        tree2.insertNode(new BinaryTree.Node(15), tree2.root);
+        tree2.insertNode(new BinaryTree.Node(2), tree2.root);
+        tree2.insertNode(new BinaryTree.Node(19), tree2.root);
 
+
+         //tree2.printPostorder(tree2.root);
+        ArrayList<String> pathArray1 = new ArrayList<>();
+        ArrayList<String> pathArray2 = new ArrayList<>();
+        ArrayList<String> pathArray3 = new ArrayList<>();
+        tree2.findPath(tree2.root,pathArray1, 9);
+        tree2.findPath(tree2.root,pathArray2, 2);
+        tree2.findPath(tree2.root,pathArray3, 17);
+        tree2.printPath(pathArray1,tree2.root);
+        tree2.printPath(pathArray2,tree2.root);
+        tree2.printPath(pathArray3,tree2.root);
     }
 }

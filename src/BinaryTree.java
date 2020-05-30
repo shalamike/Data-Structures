@@ -1,14 +1,13 @@
-import java.lang.invoke.ConstantCallSite;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class BinaryTree {
     // making the root of the binary tree
     Node root;
-
     // constructors
     BinaryTree(int value){
         this.root = new Node(value);
     }
-
     BinaryTree(){
         this.root = null;
     }
@@ -22,6 +21,7 @@ child of the current Node and the contents the Node stores */
             this.info = value;
             this.leftlink = this.rightlink = null;
         }
+        public Node (){}
     }
 
     /*
@@ -77,4 +77,77 @@ child of the current Node and the contents the Node stores */
         System.out.println(pointer.info + " ");
     }
 
+    //if given number is less than the current node, it moves to the left, otherwise it moves to the right node
+    // this will happen untill it reaches a null pointer
+    public void insertNode(Node newnode, Node Root){
+        if (Root == null){
+            root = newnode;
+        }
+        else{
+            Node pointer = root;
+            Node prev = pointer;
+            while (pointer != null){
+                prev = pointer;
+                if (newnode.info < pointer.info){
+                    pointer = pointer.leftlink;
+                }
+                else {
+                    pointer = pointer.rightlink;
+                }
+            }
+            if (newnode.info < prev.info){
+                prev.leftlink = newnode;
+            }
+            else {
+                prev.rightlink = newnode;
+            }
+        }
+    }
+
+    //checking to see if there is a path to a given node in the binary tree
+    // it will also populate an array pathArray with the given path in reverse (excluding the root)
+    public static boolean findPath(Node root,ArrayList<String> pathArray, int findInt){
+        //checking to see if there is a tree
+        if (root == null){
+            return false;
+        }
+        else{
+            //checking to see if the root contains the value
+            if (root.info == findInt){
+                return true;
+            }
+            // recursively calling the findPath method to check if right link of its current node
+            if (findPath(root.rightlink,pathArray, findInt)){
+                pathArray.add("Right Link" );
+                return true;
+            }
+            // recursively calling the findPath method to check the left link of its current node
+            if (findPath(root.leftlink, pathArray, findInt)){
+                pathArray.add("Left Link" );
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void printPath(ArrayList<String> pathArray, Node root){
+        Node pointer = root;
+        String path = "";
+        pathArray.add("root");
+        Collections.reverse(pathArray);
+        for(String direction : pathArray){
+            if(direction == "root"){
+                path += "root ["+ pointer.info + "]";
+            }
+            else if (direction == "Right Link"){
+                path += "--> Right Link [" + pointer.rightlink.info + "]";
+                pointer = pointer.rightlink;
+            }
+            else{
+                path += "--> Left Link [" + pointer.leftlink.info + "]";
+                pointer = pointer.leftlink;
+            }
+        }
+        System.out.println(path);
+    }
 }

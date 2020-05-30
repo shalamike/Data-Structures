@@ -12,6 +12,9 @@ public class LinkedList {
             next = null;
         }
     }
+
+
+
     // creating a method DealWithUnderflow which simply creates a new list with a new node at index 1
     LinkedList DealWithUnderflow(){
         // returning a new linked list with a Node
@@ -221,14 +224,77 @@ public class LinkedList {
           Node at index 0    node at index 1    |     |      node at index 2 + 1       Nth node at index n + 1
              |                   |              |     |        |                      |
              |                   |              |     |        |                      |
-         +----+------+  ...   +----+------+     |     |     +----+------+  ....   +------+------+
-         | 1  |  o-------->   | n   |  o---------     |---->| n+2|   o-------->  |  n+1  | null | -------> null
-         +----+------+  ...   +----+------+                 +----+------+  .....  +------+------+
+         +----+------+        +----+------+     |     |     +----+------+  ....   +------+------+
+         | 1  |  o----------->| n   |  o---------     |---->| n+2|   o-------->  |  n+1  | null | -------> null
+         +----+------+        +----+------+                 +----+------+  .....  +------+------+
          */
 
         /*
             the following function will add a new node at the end of the linked list
         */
+
+
+        //Creating a method to delete a node at a given index
+    public void DeleteNodeAt(int index){
+        Node pointer = head;
+        if (pointer == null){
+            System.out.println("List is already empty");
+        }
+        else{
+            // checking to see if the position of the node to be deleted is 0 (head)
+            if(index == 0){
+                head = pointer.next;
+            }
+            else{
+                // moving the pointer to the given index using a loop
+                for(int i = 0; i < index-1; i++){
+                    // checking if the pointer is currently not null
+                    if (pointer == null){
+                        System.out.println("index does not exist");
+                        break;
+                    }
+                    else {
+                        pointer = pointer.next;
+                    }
+                }
+                //checking to see if the current position is a null pointer
+                if (pointer == null){
+                    System.out.println("index does not exist");
+                }
+                else{
+                    //checking if the item is the last element on the list
+                    if(pointer.next == null){
+                        pointer = null;
+                    }
+                    //unlinking the node from the list
+                    else{
+                        //pointer.next is the node to be deleted
+                        Node placeholder = pointer.next.next;
+                        pointer.next= placeholder;
+                    }
+                }
+            }
+        }
+    }
+     /*
+                                            deleted node
+                                               |
+                                               |
+                                             +----+------+
+                                             |  n |   o  |
+                                             +----+------+
+                                               / \    |
+                                                |     |
+          Node at index 0    node at index 1    |     |      node at index 2 - 1       Nth node at index n - 1
+             |                   |                             |                      |
+             |                   |                             |                      |
+         +----+------+        +----+------+                 +----+------+  ....   +------+------+
+         | 1  |  o----------->| n   |  o------------------->| n+2|   o-------->  |  n+1  | null | -------> null
+         +----+------+        +----+------+                 +----+------+  .....  +------+------+
+         */
+
+
+
 }
 
 
