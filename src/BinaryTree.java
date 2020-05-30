@@ -106,24 +106,24 @@ child of the current Node and the contents the Node stores */
 
     //checking to see if there is a path to a given node in the binary tree
     // it will also populate an array pathArray with the given path in reverse (excluding the root)
-    public static boolean findPath(Node root,ArrayList<String> pathArray, int findInt){
+    public static boolean findPath(Node pointer,ArrayList<String> pathArray, int findInt){
         //checking to see if there is a tree
-        if (root == null){
+        if (pointer == null){
             return false;
         }
         else{
             //checking to see if the root contains the value
-            if (root.info == findInt){
+            if (pointer.info == findInt){
                 return true;
             }
             // recursively calling the findPath method to check if right link of its current node
-            if (findPath(root.rightlink,pathArray, findInt)){
-                pathArray.add("Right Link" );
+            if (findPath(pointer.rightlink,pathArray, findInt)){
+                pathArray.add("right" );
                 return true;
             }
             // recursively calling the findPath method to check the left link of its current node
-            if (findPath(root.leftlink, pathArray, findInt)){
-                pathArray.add("Left Link" );
+            if (findPath(pointer.leftlink, pathArray, findInt)){
+                pathArray.add("left" );
                 return true;
             }
         }
@@ -135,17 +135,22 @@ child of the current Node and the contents the Node stores */
         String path = "";
         pathArray.add("root");
         Collections.reverse(pathArray);
-        for(String direction : pathArray){
-            if(direction == "root"){
-                path += "root ["+ pointer.info + "]";
-            }
-            else if (direction == "Right Link"){
-                path += "--> Right Link [" + pointer.rightlink.info + "]";
-                pointer = pointer.rightlink;
-            }
-            else{
-                path += "--> Left Link [" + pointer.leftlink.info + "]";
-                pointer = pointer.leftlink;
+        if (pathArray.isEmpty()){
+            path = "Path array not found";
+        }
+        else{
+            for(String direction : pathArray){
+                if(direction == "root"){
+                    path += "root ["+ pointer.info + "]";
+                }
+                else if (direction == "right"){
+                    path += "--> Right Link [" + pointer.rightlink.info + "]";
+                    pointer = pointer.rightlink;
+                }
+                else{
+                    path += "--> Left Link [" + pointer.leftlink.info + "]";
+                    pointer = pointer.leftlink;
+                }
             }
         }
         System.out.println(path);
