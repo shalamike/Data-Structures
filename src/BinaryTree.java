@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Stack;
 
 public class BinaryTree {
     // making the root of the binary tree
@@ -49,16 +50,16 @@ child of the current Node and the contents the Node stores */
         System.out.println(pointer.info + " ");
         // now setting the pointer to the right child
         printInorder(pointer.rightlink);
-
-
     }
+
+
 
     public void printPreorder(Node pointer){
         //checking to see if the node is empty
         if (pointer == null)
             return;
         //first we visit the root and print the value of the key
-        System.out.println(pointer.info + " ");
+        System.out.println(pointer.info + " "); // visit node
         //then set the pointer to the left child
         printPreorder(pointer.leftlink);
         //then set the pointer to the right child
@@ -76,6 +77,36 @@ child of the current Node and the contents the Node stores */
         //visiting the root and printing the data of the key
         System.out.println(pointer.info + " ");
     }
+
+    public void preOrderNonRecursive(Node pointer){
+        pointer = root;
+        Stack<Node> PointerStack = new Stack<Node>();
+        if (pointer == null){
+            System.out.println("tree is empty");
+        }
+        else{
+            while (true){
+                if (pointer != null){
+                    System.out.println(pointer.info);// Visit P
+                    PointerStack.push(pointer);
+                    pointer = pointer.leftlink;
+                }
+                else{
+                    if (PointerStack.empty()){
+                        return;
+                    }
+                    else{
+                        pointer = PointerStack.peek();
+                        PointerStack.pop();
+                        pointer = pointer.rightlink;
+                    }
+                }
+            }
+        }
+    }
+
+
+
 
     //if given number is less than the current node, it moves to the left, otherwise it moves to the right node
     // this will happen untill it reaches a null pointer
@@ -155,4 +186,26 @@ child of the current Node and the contents the Node stores */
         }
         System.out.println(path);
     }
+
+    public void DeleteNode(int dataValue, Node root){
+        Node pointer = root;
+        while (pointer != null && pointer.info != dataValue){
+            Node pointerParent = pointer;
+            if (pointer.info < dataValue){
+                pointer = pointer.leftlink;
+            }
+            else {
+                pointer = pointer.rightlink;
+            }
+
+        }
+        if (pointer == null){
+            System.out.println("Node doesnt exist");
+        }
+        else {
+            //as we have a pointer pointing to the node to be deleted and its parent we need a
+        }
+    }
+    
+
 }
