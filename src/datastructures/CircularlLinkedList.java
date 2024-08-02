@@ -1,3 +1,5 @@
+package datastructures;
+
 public class CircularlLinkedList {
      /*
      A circular linked list is like a linked list except for the fact that its end node points towarrds its head node
