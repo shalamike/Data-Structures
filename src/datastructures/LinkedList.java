@@ -1,3 +1,5 @@
+package datastructures;
+
 //this class creates a singly linked list
 public class LinkedList {
     static Node head; //the head of the linked list

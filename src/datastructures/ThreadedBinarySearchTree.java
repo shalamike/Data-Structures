@@ -1,3 +1,5 @@
+package datastructures;
+
 public class ThreadedBinarySearchTree {
     public static Node root;
     public static boolean rightThread;
