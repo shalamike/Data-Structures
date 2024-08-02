@@ -22,8 +22,8 @@ public class RecursiveMethods {
 
 
     Note that when the method is called, it returns the exact same method call with the exact same parameter.
-    Unless there is a break statement within the recursive method, it will run inidefinitely.
-    therefore in order for the recursive method to finally end its termination, a termination (or break)
+    Unless there is a break statement within the recursive method, it will run indefinitely.
+    Therefore, in order for the recursive method to finally end its termination, a termination (or break)
     statement must be introduced as well as some change to the parameter given to us as demonstrated below:
 
     public void someMethod(int parameter){
@@ -31,8 +31,8 @@ public class RecursiveMethods {
         method(parameter - 1);
     }
 
-    where in this case, the termination statement happens on line 25 "if (n!= 0) and the change to our parameter
-    happens on line 26 "method(parameter - 1)" where in this case, every time the method is called again, the parameter
+    where in this case, the termination statement happens on line 30 "if (n!= 0) and the change to our parameter
+    happens on line 31 "method(parameter - 1)" where in this case, every time the method is called again, the parameter
     is reduced by a value of one. therefore when we run our new recursive method, it will constantly count backwards
     from our initial input number until it reaches 0 as shown below
 
@@ -42,9 +42,9 @@ public class RecursiveMethods {
           V                                                                                                 V
         someMethod(10) -> someMethod(9) -> someMethod(8) -> someMethod(7) -> someMethod(6) ->... -> someMethod(0)
 
-      when methods are imlemented correctly, a way to think of their execution is that the act similarly to an
-      elastic band, where each recursive call continuously pulls and pulls untill the last execution statement is
-      reached. where in that case the elastic band is finally releasted
+      Therefore, when methods are implemented correctly, you can think of their execution behaving similarly to an
+      elastic band, where each recursive call continuously pulls and pulls until the last execution statement is
+      reached. where in that case the elastic band is finally released
 
      */
 
