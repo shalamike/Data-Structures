@@ -1,6 +1,8 @@
 "# Data-Structures" 
 
 This code has been created primarily as a revision tool for fundamental programming using java. 
+Originally designed to encompass the fundamentals of data structures, this has grown to utilise other java and programming fundamentals.
+
 Areas covered are as follows
 
 - datastructures
@@ -8,7 +10,6 @@ Areas covered are as follows
   - circular lists
   - binary trees
   - doubly linked lists
-  - 
 
 - sorting algorythms
 - recursion
