@@ -7,27 +7,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/BinaryTree.java" line="46" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ac1aed4-b91f-47b0-b45d-57e650e45b2f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sortingalgorythms/ArraySorts.java" afterDir="false" />
+    <list default="true" id="2ac1aed4-b91f-47b0-b45d-57e650e45b2f" name="Default Changelist" comment="fixed descriptions and typos in RecursiveMethods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/BinaryTree$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/BinaryTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/CircularlLinkedList$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/CircularlLinkedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/DoublyLinkedList$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/DoublyLinkedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/LinkedList$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/LinkedList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/META-INF/data-structures.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/ThreadedBinarySearchTree$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/ThreadedBinarySearchTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BinaryTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datastructures/BinaryTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CircularlLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datastructures/CircularlLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DoublyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datastructures/DoublyLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datastructures/LinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datastructures/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ThreadedBinarySearchTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datastructures/ThreadedBinarySearchTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/data-structures/recursion/RecursiveMethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/data-structures/recursion/RecursiveMethods.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collectionsmethods/StreamsRecap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collectionsmethods/StreamsRecap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,31 +102,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mike/Documents/programming/liskyBusinessProject/LiskyBusinessProject&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "S:/programming stuff/programming/Data-Structures",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
-}</component>
-  <component name="RunManager" selected="Application.recursion.Main">
-    <configuration name="AnotherMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="collectionsmethods.stringstuff.AnotherMain" />
-      <module name="data-structures" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="collectionsmethods.stringstuff.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+}]]></component>
+  <component name="RunManager" selected="Java Scratch.Scratch (1)">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="datastructures.Main" />
       <module name="data-structures" />
@@ -170,27 +140,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scratch (2)" type="Java Scratch" temporary="true" nameIsGenerated="true">
+    <configuration name="Scratch (1)" type="Java Scratch" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Scratch" />
-      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_26.java" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_32.java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
+    <configuration name="Scratch (2)" type="Java Scratch" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Scratch" />
-      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_27.java" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_36.java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scratch (3)" type="Java Scratch" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_35.java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Java Scratch.Scratch (1)" />
+        <item itemvalue="Java Scratch.Scratch (2)" />
+        <item itemvalue="Java Scratch.Scratch (3)" />
         <item itemvalue="Application.recursion.Main" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Java Scratch.Scratch" />
-        <item itemvalue="Java Scratch.Scratch (2)" />
-        <item itemvalue="Application.AnotherMain" />
       </list>
     </recent_temporary>
   </component>
@@ -231,6 +208,28 @@
       <workItem from="1590934446102" duration="8514000" />
       <workItem from="1590967228978" duration="4007000" />
     </task>
+    <task id="LOCAL-00001" summary="added recursion revision, streams and sorting algorithms">
+      <created>1722616480252</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722616480252</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added recursion revision, streams and sorting algorithmsm, still need to add threading to this, will probably have to rename repo">
+      <created>1722616602366</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722616602366</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixed descriptions and typos in RecursiveMethods">
+      <created>1722618525415</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722618525415</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -274,6 +273,12 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added recursion revision, streams and sorting algorithms" />
+    <MESSAGE value="added recursion revision, streams and sorting algorithmsm, still need to add threading to this, will probably have to rename repo" />
+    <MESSAGE value="fixed descriptions and typos in RecursiveMethods" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed descriptions and typos in RecursiveMethods" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -309,6 +314,21 @@
           <url>file://$PROJECT_DIR$/src/recursion/RecursiveMethods.java</url>
           <line>105</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_35.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_35.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_35.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

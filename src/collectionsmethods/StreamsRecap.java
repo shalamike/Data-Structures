@@ -19,13 +19,17 @@ public class StreamsRecap {
 
     public static List<Integer> two2(List<Integer> nums){
         return nums
-                .stream()
-                .map(num -> num * 2)
-                .filter(num -> num % 10 != 2 )
-                .sorted()
-                .collect(Collectors.toList());
+                .stream()  // initiating the stream
+                .map(num -> num * 2)  //conducting an intermediary operation
+                .filter(num -> num % 10 != 2 ) // conducting another intermediary operation
+                .sorted() // conducting another intermediary operation
+                .collect(Collectors.toList()); // the final step, conducting a terminate operation
     }
 
+    /*
+    * mapping an array of strings to a hashmap (equivalent of a dictionary for the python folks) using a for loop where
+    * the key is the string in the array and the value is just 0
+    * */
     public static Map<String, Integer> word0(String[] strings) {
         Map<String, Integer> returnedMap = new HashMap<>();
         for (String str: strings) {
@@ -34,6 +38,27 @@ public class StreamsRecap {
         return returnedMap;
     }
 
+    /*
+     the exact same method using a stream instead. first we convert the array to a stream,
+     then we go immediately to a terminate operation where we convert the array to a stream which is done in
+     two stages as follows
+
+              stage 1:
+                    .toMap(key -> key, value -> 0
+
+     in the snippet above, we have two mappers. The KEY MAPPER and the VALUE MAPPER.
+     The Key Mapper maps keys to the hashmap. in this instance its directly mapping the values from the array
+     as keys in our hashmap.
+     The Value Mapper maps values to the hasmap. in this instance we are mapping each value to 0 just like the method
+     above
+
+            stage 2:
+                (v1, v2) -> v2));
+
+    in this snippet above, we handle what is known as collisions. collisions are duplicate values our array i.e. two
+    strings in an array of strings are the same. therefore we need to handle what to do with the current value.
+    In this instance, the value from the second occurrence is used.
+     */
     public static Map<String, Integer> word1(String[] strings) {
         return Arrays
                 .stream(strings)
