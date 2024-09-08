@@ -39,7 +39,7 @@ public class StreamsRecap {
     }
 
     /*
-     the exact same method using a stream instead. first we convert the array to a stream,
+     the exact same method below is using a stream instead. first we convert the array to a stream,
      then we go immediately to a terminate operation where we convert the array to a stream which is done in
      two stages as follows
 
@@ -57,7 +57,7 @@ public class StreamsRecap {
 
     in this snippet above, we handle what is known as collisions. collisions are duplicate values our array i.e. two
     strings in an array of strings are the same. therefore we need to handle what to do with the current value.
-    In this instance, the value from the second occurrence is used.
+    In this instance, the value from the second occurrence is used which will allways be 0.
      */
     public static Map<String, Integer> word1(String[] strings) {
         return Arrays
@@ -99,6 +99,24 @@ public class StreamsRecap {
             }
         }
         return arrayListToReturn.stream().toArray(n -> new String[n]);
+    }
+
+    public boolean containsDuplicateNumbers(int[] nums){
+        HashMap<Integer, Integer> numsCounter =
+                Arrays.stream(nums)
+                        .boxed() //Converts the IntStream to Stream<Integer>, which allows you to use the Collectors.toMap() collector because Collectors work with object types (i.e., reference types) and not primitives.
+                        .collect(Collectors.toMap(
+                                key -> key,
+                                value -> 1,
+                                (v1, v2) -> v1 + 1,
+                                HashMap::new)); // ensures that the result returned is a HashMap
+
+        for(Map.Entry<Integer, Integer> entry : numsCounter.entrySet()){
+            if (entry.getValue() > 1)
+                return true;
+        }
+
+        return false;
     }
 
     public static Map<String, String> pairs(String[] strings){
