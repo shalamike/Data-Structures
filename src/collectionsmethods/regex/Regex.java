@@ -199,7 +199,7 @@ public class Regex {
         (w{3}\\.)? checks if there is 0 or one occurance of www.
         [a-zA-Z0-9]+ checks if there is one or more alphanumeric characters after the optional https:// and www.
         (\\.) ensures that there is a dot followed by the alphanumeric characters
-        ((co\.uk)|(com))$ ensures that the last characters in the string are either co.uk or com
+        ((co\\.uk)|(com))$ ensures that the last characters in the string are either co.uk or com
         (\/[a-zA-Z0-9]+)* ensures that the url can be followed by foreward slash and an alphanumeric string
         sequence as many times as needed or none at all
         i.e. //com/hud/tv will be accepted but not comasddgs as there is no "/"
