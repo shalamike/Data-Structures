@@ -7,9 +7,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/BinaryTree.java" line="46" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ac1aed4-b91f-47b0-b45d-57e650e45b2f" name="Default Changelist" comment="begun to add some notes for regex">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/data-structures/collectionsmethods/StreamsRecap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/data-structures/collectionsmethods/StreamsRecap.class" afterDir="false" />
+    <list default="true" id="2ac1aed4-b91f-47b0-b45d-57e650e45b2f" name="Default Changelist" comment="fixed typo in comment">
       <change beforePath="$PROJECT_DIR$/src/collectionsmethods/regex/Regex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collectionsmethods/regex/Regex.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -237,7 +235,21 @@
       <option name="project" value="LOCAL" />
       <updated>1725834370534</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finished adding notes to regex with the exception of usnig regex to filter added one method to streams to allow streaming an array of ints into a hashmap">
+      <created>1725877370650</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725877370650</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fixed typo in comment">
+      <created>1725877727131</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1725877727131</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -287,7 +299,9 @@
     <MESSAGE value="fixed descriptions and typos in RecursiveMethods" />
     <MESSAGE value="added description to StreamsRecap class to the arrays to hashmap method" />
     <MESSAGE value="begun to add some notes for regex" />
-    <option name="LAST_COMMIT_MESSAGE" value="begun to add some notes for regex" />
+    <MESSAGE value="Finished adding notes to regex with the exception of usnig regex to filter added one method to streams to allow streaming an array of ints into a hashmap" />
+    <MESSAGE value="fixed typo in comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed typo in comment" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

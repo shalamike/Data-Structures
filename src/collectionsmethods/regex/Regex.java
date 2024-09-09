@@ -202,7 +202,7 @@ public class Regex {
         ((co\\.uk)|(com))$ ensures that the last characters in the string are either co.uk or com
         (\/[a-zA-Z0-9]+)* ensures that the url can be followed by foreward slash and an alphanumeric string
         sequence as many times as needed or none at all
-        i.e. //com/hud/tv will be accepted but not comasddgs as there is no "/"
+        i.e. ...com/hud/tv will be accepted but not ...comasddgs as there is no "/"
 
          */
         String regex = "(http(s?):\\/\\/)?(w{3}(\\.))?[a-zA-Z0-9]+(\\.)((co\\.uk)|(com))(\\/[a-zA-Z0-9]+)*";
@@ -233,8 +233,8 @@ public class Regex {
 //        System.out.println(checkingUrl2("http://www.cool345sch.com"));
 
 //        System.out.println(checkingUrl3("https://www.asdgsdgs.com"));
-        System.out.println(checkingUrl3("https://www.asdgsdgs.com/dfs/sdf"));
-        System.out.println(checkingUrl3("http://www.asdgsdgs.com/dfs/sdf"));
+//        System.out.println(checkingUrl3("https://www.asdgsdgs.com/dfs/sdf"));
+//        System.out.println(checkingUrl3("http://www.asdgsdgs.com/dfs/sdf"));
 //        System.out.println(checkingUrl3("https://www.asdgsdgs.comdfssdf"));
 
 
