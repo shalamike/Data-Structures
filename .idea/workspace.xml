@@ -7,11 +7,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/BinaryTree.java" line="46" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ac1aed4-b91f-47b0-b45d-57e650e45b2f" name="Default Changelist" comment="added description to StreamsRecap class to the arrays to hashmap method">
-      <change afterPath="$PROJECT_DIR$/src/collectionsmethods/regex/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/collectionsmethods/regex/Regex.java" afterDir="false" />
+    <list default="true" id="2ac1aed4-b91f-47b0-b45d-57e650e45b2f" name="Default Changelist" comment="begun to add some notes for regex">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collectionsmethods/StreamsRecap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collectionsmethods/StreamsRecap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/data-structures/collectionsmethods/StreamsRecap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/data-structures/collectionsmethods/StreamsRecap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collectionsmethods/regex/Regex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/collectionsmethods/regex/Regex.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1722652036487</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="begun to add some notes for regex">
+      <created>1725834370534</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725834370534</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -280,7 +286,8 @@
     <MESSAGE value="added recursion revision, streams and sorting algorithmsm, still need to add threading to this, will probably have to rename repo" />
     <MESSAGE value="fixed descriptions and typos in RecursiveMethods" />
     <MESSAGE value="added description to StreamsRecap class to the arrays to hashmap method" />
-    <option name="LAST_COMMIT_MESSAGE" value="added description to StreamsRecap class to the arrays to hashmap method" />
+    <MESSAGE value="begun to add some notes for regex" />
+    <option name="LAST_COMMIT_MESSAGE" value="begun to add some notes for regex" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
