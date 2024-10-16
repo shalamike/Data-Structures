@@ -13,6 +13,7 @@ Areas covered are as follows
 
 - sorting algorythms
 - recursion
+- regular expressions
 - streams (and lambdas which will be completed)
 
 
