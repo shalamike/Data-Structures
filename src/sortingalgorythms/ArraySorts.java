@@ -16,7 +16,7 @@ public class ArraySorts {
     in the example below, the number of iterations in the nested loop reduces as the largest number gets pushed
     to the back of the array chronologically as demonstrated below:
 
-   [...](j = arr length) --> [...,10](j=arr length -1) --> [...,9,10](j=arr length -2) --> [...,8,9,10](j=arr length -2)
+   [...](j = arr length) --> [...,10](j=arr length -1) --> [...,9,10](j=arr length -2) --> [...,8,9,10](j=arr length -3)
 
    As a result, the algorythm splits the array with a sorted region at the end and the unsorted region at the begining.
    gradually the sorted region increases in size as the itterations progress as shown below:
@@ -147,23 +147,215 @@ example below:
     }
 
 
-    public static void mergeSort(int[] arr, int left, int right) {
-        if (left < right) {
-            int mid = (left + right) / 2;
 
-            mergeSort(arr, left, mid);
-            mergeSort(arr, mid + 1, right);
 
-            merge(arr, left, mid, right);
-        }
+    public static void mergeSort(int inputArr[]){
+        int inputLength = inputArr.length;
+
+        /*
+        as this is a divide and conquer algorythm, we will keep splitting the array untill we cant divide it anymore.
+        therefore, lets make sure our array in its current state can still be split, if not, we will return and break
+        out of the recursive loop
+         */
+
+        if (inputLength < 2)
+            return;
+
+        //get the haflway point of the array
+        int midIndex = inputLength/2;
+
+        //splitting our current array into two halves
+        int[] leftHalf = new int[midIndex];
+        int[] rightHalf = new int[inputLength - midIndex];
+        // we take the right half in this way just incase the array has an odd number of elements.
+
+        // populating the left half of our current array
+        for (int i = 0; i < midIndex; i++)
+            leftHalf[i] = inputArr[i];
+
+
+        // populating the right half of our array
+        for (int i = midIndex; i < inputLength; i++)
+            rightHalf[i - midIndex] = inputArr[i];
+
+        /*
+        now that we have split our current array into two smaller arrays, we recursively call the mergeSort method on
+        each half of our current array. This is demonstrated in the code and diagram below.
+         */
+
+        mergeSort(leftHalf);
+        mergeSort(rightHalf);
+
+        /*
+        Now we have executed the "divide" part of the divide and conquer merge sort algorythm.
+        To demonstrate the current operation, lets say our input array known as inputArr is [ 3, 6, 2, 4, 1, 5, 9].
+        when we call mergSort on our input array as shown below:
+
+                                        mergeSort(inputArr)
+
+        it will split our input array into two halves.
+
+                    leftHalf        rightHalf
+                        |               |
+                        |               |
+                        V               V
+                  [ 3, 6, 2]       [4, 1, 5, 9]
+
+        where on lines 188 and 187, we create the two arrays that will store each half of our input array and on lines
+        189 to 196 we populate each half of the array with half the values of our input array. Once we split our array
+        we then recursively call our mergeSplit method on both halves of the array and repeat the process as shown below
+
+                            inputArr[] int =  [ 3, 6, 2, 4, 1, 5, 9]
+                                                       |
+                                                       |  mergeSort(inputArr)
+                                                       |
+                                                       V
+                  leftHalf[] int = [ 3, 6, 2 ]                         rightHalf[] int = [4, 1, 5, 9]
+                                        |                                                    |
+                                        | mergeSort(leftHalf)                                | mergeSort(rightHalf)
+                                        |                                                    |
+                                        |                                                    V ... continues splitting
+                                        V
+
+          leftHalf  =  [ 3 ]                   rightHalf = [6, 2]
+                        |                              |
+                        |mergeSort(leftHalf)           |  mergeSort(rightHalf)
+                        |                              |
+               no longer can be split                  |
+              as there is only one element             |
+                                                       V
+                                     leftHalf = [6]         rightHalf = [2]
+                                          |                      |
+                                          |                      |
+                                          |                      |
+                              No Longer can be split as there is only one element in each array
+
+     Eventually we will be left with multiple single element that will be called in our mergeSort method as shown below:
+
+     mergeSort([3]), mergeSort([6]), mergeSort([2]), mergeSort[4]), mergeSort([1]), mergeSort(5]), mergeSort([9])
+
+     As we have the exit statement at the begining of our method on lines 178 to 179 checking if there is less than 2
+     elements of our array, we will no longer keep calling mergeSort.
+
+     So now the "conquer" part of the "divide and conquer" merge sort algorythm. for this we will seperate the merge
+     part of the algorythm into a seperate method.
+
+         */
+
+        merge(inputArr, leftHalf, rightHalf);
+
+        /*
+        on line 245, we call the "merge" method that merges (or "conquers") our merge sort algorythm.
+        This method takes 3 parameters:
+
+        inputArr = our current input array that will be sorted using the left and right halves.
+
+        leftHalf = the sorted left half of the array
+
+        rightHalf = the sorted right half of the array.
+
+        The reason why the left and right halves will be sorted in our method call is because when we begin the merging
+        process, the left and right half arrays will only have one element. Therefore, they will naturally be sorted
+        arrays and as we keep sorting and merging, the left half and right half will be the resul of the sorted merged
+        array. This is demonstrated in the diagram below:
+
+
+        1st lets take the last 4 of the single elements that will be merged together and their inputs as we begin the merging
+        process
+
+
+               inputArr = [4,1]                                   inputArr = [5,9]
+        leftHalf = [4]  right half[1]                     leftHalf =  [5]  rightHalf = [9]
+
+        we then compare values in the left and right half of each array and update the value of the input arrays above
+        as shown below:
+
+
+                       input arr = [1,4]                        inputArr = [5,9]
+
+        Now we have two sorted input arrays, as we call the merge method again it will take the following paramters
+
+                 inputArr = [4,1,5,9]
+        leftHalf = [1,4]         rightHalf = [5,9]
+
+        with the two sorted input arrays, as shown in line 274, they become our leftHalf and rightHalf as shown in line
+        279 and 280. we then compare values in our left and right array and sort the input array as shown below:
+
+                inputArr = [1,4,5,9]
+
+        Note that when we call the Merge, the leftHalf and rightHalf will always be sorted.
+        This is because the merge operation that will take place in the method below will only be able to merge if the
+        two arrays. As mentioned before, this is also why we divided the array down to single elements as
+        single element arrays are always sorted by default.
+         */
+
     }
 
-    private static void merge(int[] arr, int left, int mid, int right) {
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
 
-        int[] L = new int[n1];
-        int[] R = new int[n2];
+    private static void merge(int[] toBeMerged, int[] leftHalf, int[] rightHalf){
+        /*
+        Now we are in the merge part of the mergeSort algorythm or the Conquer part of this divide and conquer algorythm.
+        this part works by essentially comparing elements of both the left half and right half of the arrays and then
+        adjusting the values for our current toBeMerged array which will become the sorted merged array.
+         */
+
+        //total size of our current left half to be merged
+        int leftSize = leftHalf.length;
+        //total size of our current right half to be merged
+        int rightSize = rightHalf.length;
+
+        //pointers that will keep track of our location on the left, right and input array to be merged and sorted.
+        int leftHalfPointer = 0, rightHalfPointer = 0, toBeMergedPointer = 0;
+
+
+        while (leftHalfPointer < leftSize && rightHalfPointer < rightSize){
+            //checking to see if the current value in our left half is less than or equal to our right half.
+            if (leftHalf[leftHalfPointer] <= rightHalf[rightHalfPointer]){
+                //if it is, then we add that to our next element to the input array
+                toBeMerged[toBeMergedPointer] = leftHalf[leftHalfPointer];
+                //we then increment our leftPointer by 1
+                leftHalfPointer++;
+            }
+            //Otherwise the value current value in our righthalf is bigger then the current value in the left half
+            else {
+                // Therefore our next value in our merged
+                toBeMerged[toBeMergedPointer] = rightHalf[rightHalfPointer];
+                //then we increment our rightPointer by 1
+                rightHalfPointer++;
+            }
+            /*
+            Now regardless of which value was bigger, after we record that value in our toBeMerged array, we need to
+            increment our toBeMergedPointer by 1 so that we can record the next sorted value.
+             */
+            toBeMergedPointer++;
+        }
+
+        /*
+        Note that in the condition of our while loop, it will terminate once, one of the pointers reach the end of one
+        of the arrays. Therefore, there will still be one half that will have values still in it, these values will be
+        the largest values of their current sorted array so we can just add those left over values to our
+        arrayToBeMerged.
+         */
+
+        //if the left half still has values left over, we just add those remaining values.
+        while (leftHalfPointer < leftSize){
+            toBeMerged[toBeMergedPointer] = leftHalf[leftHalfPointer];
+            leftHalfPointer++;
+            toBeMergedPointer++;
+        }
+
+        //if the right half still has values left over, we just add those values instead.
+        while (rightHalfPointer < rightSize){
+            toBeMerged[toBeMergedPointer] = rightHalf[rightHalfPointer];
+            rightHalfPointer++;
+            toBeMergedPointer++;
+        }
+
+        /*
+        Note that there is no need for a boolean to check if there is left over values as the initals while statement on
+        line 311 would have terminated once one pointer reached the end of its array.
+         */
+
     }
 
 }
