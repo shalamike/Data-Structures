@@ -1,20 +1,15 @@
 package datastructures.graphs;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class AdjacencyMatrix {
-    /*
-    An adjacency matrix uses a 2 dimensional array to represent the connections between the nodes of the graph.
-    The values stored within a graph will contain the edges that connect each node.
-     */
 
     int[][] matrixArray;
 
     int numOfNodes;
 
     ArrayList<ArrayList<Integer>>matrixArrayList;
-
-    int currentNumberOfNodes;
 
     boolean isDirected;
 
@@ -24,49 +19,52 @@ public class AdjacencyMatrix {
         matrixArray = new int[numOfNodes][numOfNodes];
     }
 
-    public AdjacencyMatrix(){
+    public AdjacencyMatrix(boolean isDirected){
+        this.isDirected = isDirected;
         matrixArrayList = new ArrayList<>();
-        currentNumberOfNodes = 0;
+        numOfNodes = 0;
     }
 
     // adding edge to our matrix
 
-    public void matrixArrayAddEdge (int fromNode, int toNode){
+    public void arrayAddEdge (int fromNode, int toNode){
         matrixArray[fromNode][toNode] = 1;
         if (!isDirected)
             matrixArray[toNode][fromNode] = 1;
     }
 
-    public void matrixArrayAddEdge(int fromNode, int toNode, int weight){
+    public void arrayAddEdge(int fromNode, int toNode, int weight){
         matrixArray[fromNode][toNode] = weight;
         if (!isDirected)
             matrixArray[toNode][fromNode] = weight;
     }
 
-    public void matrixArrayListCreateNewNode(){
+    public boolean arrayHasEdge(int from, int to){
+        return matrixArray[from][to] >= 1;
+    }
+
+    public void listCreateNode(){
         matrixArrayList.add(new ArrayList<>());
-        currentNumberOfNodes++;
+        this.numOfNodes++;
         //adding default values to edges to ensure the matrix is consistent in structure with array
 
         for (ArrayList<Integer> integers : matrixArrayList) {
-            if (integers.size() < currentNumberOfNodes)
-                for( int currentRowPointer= integers.size(); integers.size()< currentNumberOfNodes; currentRowPointer++){
+            if (integers.size() < numOfNodes)
+                for( int currentRowPointer= integers.size(); integers.size()< numOfNodes; currentRowPointer++){
                     integers.add(0);
                 }
         }
     }
 
-    public void matrixArrayListCreatEdge(int to, int from, int weight){
-        if (!isDirected)
-            matrixArrayList.get(to).set(from, weight);
-        else {
-            matrixArrayList.get(to).set(from, weight);
+    public void listCreateEdge(int to, int from, int weight){
+        matrixArrayList.get(to).set(from, weight);
+        if (!isDirected){
             matrixArrayList.get(from).set(to, weight);
         }
     }
 
 
-    public void printMatrix(){
+    public void printMatrixArray(){
         StringBuilder header = new StringBuilder();
         for (int currentNode =0; currentNode < numOfNodes; currentNode++){
             header.append("  ").append(currentNode);
@@ -90,18 +88,108 @@ public class AdjacencyMatrix {
         }
     }
 
-    public void printMatrix2(){
+    public ArrayList<Integer> dfsIterative(int startNode){
+
+        /*tracking the visited nodes to avoid revisiting. We use an array of booleans to keep track of our
+        visited nodes where the index of our array is our node and the boolean value represents whether its visited
+        or not. this allows for very fast access to our visited data as we will be directly using the index.
+         
+         */
+        boolean[] visited = new boolean[numOfNodes];
+        ArrayList<Integer> visitedNodeOrder = new ArrayList<>();
+
+        //stack to manage the Depth first seach as its Last In First Out (LIFO)
+        Stack<Integer> stack = new Stack<>();
+
+        //start with any given node entered in the method parameter
+        stack.push(startNode);
+
+        /*
+        now there are nodes to process in the stack, the traversall algorythm can begin. as we will keep traversing
+        the graph untill there are no more nodes to access in our stack. 
+         */       
+        
+        while (!stack.isEmpty()){
+            //first we pop our stack to get our current value thats being visited. 
+            
+            int currentNode = stack.pop();
+            
+            // if this item is not in our visited array, we add it to our visited array
+            
+            if (!visited[currentNode]){
+                visited[currentNode] = true;
+                System.out.println("currently on Node :" + currentNode);
+                visitedNodeOrder.add(currentNode);
+            }
+            
+            /*
+            now we look through all possible neighbours in reverse order to try our best to visit the smallest 
+            nodes first. This ordering process is entirely optional
+             */
+            
+            for (int neighbouringNode = numOfNodes - 1; neighbouringNode >= 0; neighbouringNode--){
+                //checking to see if our neighbouring node has a path to our current node
+                if (matrixArray[currentNode][neighbouringNode] >=1 ){
+                    //checking to see if our neghbouring node has been visitd
+                    if(!visited[neighbouringNode]){
+                        //if our neighbouringNode hasn't been visited, it is added to our stack
+                        stack.push(neighbouringNode);
+                    }
+                }
+            }
+        }
+        return visitedNodeOrder;
+    }
+    
+    public ArrayList<Integer> dfsRecursive(int startNode){
+
+        ArrayList<Integer> visitedOrder = new ArrayList<>();
+        /*
+        create an array of booleans to keep track of visited nodes where the index of the array represents the node.
+        This is done to rapidly access visited nodes rather then perform a search.
+         */
+        boolean[] visited = new boolean[numOfNodes];
+
+        System.out.println("Recursive DFS starting from Node " + startNode + ":");
+        dfsRecursiveHelper(startNode, visited, visitedOrder);
+//        System.out.println();
+
+        return visitedOrder;
+    }
+    
+    public void dfsRecursiveHelper(int currentNode, boolean[] visitedNodes, ArrayList<Integer> visitedOrder){
+        //mark our current node as been visited
+        visitedNodes[currentNode] = true;
+
+        //carry out some process to our node
+//        System.out.println(currentNode + "some process");
+        visitedOrder.add(currentNode);
+
+        //visit all unvisited neighbours in the same order as our iterative approach (lowest to highest)
+        for (int neighbouringNode = 0; neighbouringNode <= numOfNodes -1; neighbouringNode++){
+            //checking if our current node has a path to our neighbouring node
+            if (matrixArray[currentNode][neighbouringNode] >= 1){
+                //checking to see if our neighbouring node has been visited
+                if (!visitedNodes[neighbouringNode]){
+                    //if its not been visited, we add traverse down that node recursively
+                    dfsRecursiveHelper(neighbouringNode, visitedNodes, visitedOrder);
+                }
+            }
+        }
+    }
+
+    public void printMatrixList(){
         StringBuilder header = new StringBuilder();
-        for (int currentNode =0; currentNode < currentNumberOfNodes; currentNode++){
+        for (int currentNode =0; currentNode < numOfNodes; currentNode++){
             header.append("  ").append(currentNode);
         }
         System.out.println(header);
-        for (int rowPointer =0; rowPointer < currentNumberOfNodes; rowPointer++){
+        for (int rowPointer =0; rowPointer < numOfNodes; rowPointer++){
             StringBuilder row = new StringBuilder();
             row.append(rowPointer);
             row.append("[");
-            for (int edgePointer = 0; edgePointer < currentNumberOfNodes; edgePointer++){
-                if (edgePointer < currentNumberOfNodes - 1){
+            for (int edgePointer = 0; edgePointer < numOfNodes; edgePointer++){
+                if (edgePointer < numOfNodes - 1){
                     row.append(matrixArrayList.get(rowPointer).get(edgePointer));
                     row.append(", ");
                 }
@@ -114,52 +202,87 @@ public class AdjacencyMatrix {
         }
     }
 
-    public boolean hasEdge(int from, int to){
-        return matrixArray[from][to] >= 1;
-    }
-
     public static void main (String args[]){
 
-        AdjacencyMatrix graph = new AdjacencyMatrix(4, true);
+//        AdjacencyMatrix graph = new AdjacencyMatrix(4, true);
+//
+//        graph.arrayAddEdge(0,1);
+//        graph.arrayAddEdge(0,2);
+//        graph.arrayAddEdge(1,2);
+//        graph.arrayAddEdge(2,0);
+//        graph.arrayAddEdge(2,3);
+//        graph.arrayAddEdge(3,3);
+//
+//
+//        graph.printMatrixArray();
+//        System.out.println();
+//        graph = new AdjacencyMatrix(4, true);
+//        graph.arrayAddEdge(0,1,1);
+//        graph.arrayAddEdge(0,2,1);
+//        graph.arrayAddEdge(1,2,2);
+//        graph.arrayAddEdge(2,0,3);
+//        graph.arrayAddEdge(2,3,2);
+//        graph.arrayAddEdge(3,3,1);
+//
+//        graph.printMatrixArray();
+//
+//        AdjacencyMatrix graph2 = new AdjacencyMatrix(true);
+//
+//        graph2.listCreateNode();
+//        graph2.listCreateNode();
+//        graph2.listCreateNode();
+//        graph2.listCreateNode();
+//
+//        graph2.listCreateEdge(0,1, 1);
+//        graph2.listCreateEdge(0,2, 1);
+//        graph2.listCreateEdge(1,2, 2);
+//        graph2.listCreateEdge(2,0, 3);
+//        graph2.listCreateEdge(2,3, 2);
+//        graph2.listCreateEdge(3,3, 1);
+//
+//
+//        System.out.println();
+//        graph2.printMatrixList();
+//        graph2.listCreateNode();
+//        graph2.listCreateEdge(4,1,2);
+//        graph2.listCreateEdge(2,4,5);
+//        System.out.println();
+//        graph2.printMatrixList();
+//        System.out.println();
+//        System.out.println("number of nodes " + graph2.numOfNodes);
 
-        graph.matrixArrayAddEdge(0,1);
-        graph.matrixArrayAddEdge(0,2);
-        graph.matrixArrayAddEdge(1,2);
-        graph.matrixArrayAddEdge(2,0);
-        graph.matrixArrayAddEdge(2,3);
-        graph.matrixArrayAddEdge(3,3);
+        AdjacencyMatrix graph3 = new AdjacencyMatrix(10,false);
+        graph3.arrayAddEdge(0,1);
+        graph3.arrayAddEdge(0,2);
+        graph3.arrayAddEdge(1,4);
+        graph3.arrayAddEdge(1,3);
+        graph3.arrayAddEdge(3,5);
+        graph3.arrayAddEdge(5,6);
+        graph3.arrayAddEdge(5,7);
+        graph3.arrayAddEdge(5,8);
+        graph3.arrayAddEdge(8,9);
 
+        graph3.printMatrixArray();
 
-        graph.printMatrix();
         System.out.println();
-        graph = new AdjacencyMatrix(4, true);
-        graph.matrixArrayAddEdge(0,1,1);
-        graph.matrixArrayAddEdge(0,2,1);
-        graph.matrixArrayAddEdge(1,2,2);
-        graph.matrixArrayAddEdge(2,0,3);
-        graph.matrixArrayAddEdge(2,3,2);
-        graph.matrixArrayAddEdge(3,3,1);
 
-        graph.printMatrix();
+        StringBuilder visitedNodes = new StringBuilder();
+        for (Integer node : graph3.dfsIterative(0)) {
+            visitedNodes.append(node).append(" ");
+        }
+        System.out.println(visitedNodes);
 
-        AdjacencyMatrix graph2 = new AdjacencyMatrix();
-
-        graph2.matrixArrayListCreateNewNode();
-        graph2.matrixArrayListCreateNewNode();
-        graph2.matrixArrayListCreateNewNode();
-        graph2.matrixArrayListCreateNewNode();
-
-        graph2.matrixArrayListCreatEdge(0,1, 1);
-        graph2.matrixArrayListCreatEdge(0,2, 1);
-        graph2.matrixArrayListCreatEdge(1,2, 2);
-        graph2.matrixArrayListCreatEdge(2,0, 3);
-        graph2.matrixArrayListCreatEdge(2,3, 2);
-        graph2.matrixArrayListCreatEdge(3,3, 1);
-
+//        System.out.println(graph3.numOfNodes);
 
         System.out.println();
-        graph2.printMatrix2();
 
+        System.out.println("DFS recursively: ");
 
+        StringBuilder visitedNodes2 = new StringBuilder();
+        for (Integer node : graph3.dfsRecursive(0)){
+            visitedNodes2.append(node).append(" ");
+        }
+
+        System.out.println(visitedNodes2);
     }
 }
