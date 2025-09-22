@@ -128,12 +128,25 @@ public class AdjacencyMatrix {
              */
             
             for (int neighbouringNode = numOfNodes - 1; neighbouringNode >= 0; neighbouringNode--){
-                //checking to see if our neighbouring node has a path to our current node
-                if (matrixArray[currentNode][neighbouringNode] >=1 ){
-                    //checking to see if our neghbouring node has been visitd
-                    if(!visited[neighbouringNode]){
-                        //if our neighbouringNode hasn't been visited, it is added to our stack
-                        stack.push(neighbouringNode);
+                //checking to see if our adjacency matrix is an array or arrayList
+                if (matrixArray != null){
+                    //checking to see if our neighbouring node has a path to our current node
+                    if (matrixArray[currentNode][neighbouringNode] >=1 ){
+                        //checking to see if our neghbouring node has been visitd
+                        if(!visited[neighbouringNode]){
+                            //if our neighbouringNode hasn't been visited, it is added to our stack
+                            stack.push(neighbouringNode);
+                        }
+                    }
+                }
+                else {
+                    //checking to see if our neighbouring node has a path to our current node
+                    if (matrixArrayList.get(currentNode).get(neighbouringNode) >=1 ){
+                        //checking to see if our neghbouring node has been visitd
+                        if(!visited[neighbouringNode]){
+                            //if our neighbouringNode hasn't been visited, it is added to our stack
+                            stack.push(neighbouringNode);
+                        }
                     }
                 }
             }
@@ -168,11 +181,21 @@ public class AdjacencyMatrix {
         //visit all unvisited neighbours in the same order as our iterative approach (lowest to highest)
         for (int neighbouringNode = 0; neighbouringNode <= numOfNodes -1; neighbouringNode++){
             //checking if our current node has a path to our neighbouring node
-            if (matrixArray[currentNode][neighbouringNode] >= 1){
-                //checking to see if our neighbouring node has been visited
-                if (!visitedNodes[neighbouringNode]){
-                    //if its not been visited, we add traverse down that node recursively
-                    dfsRecursiveHelper(neighbouringNode, visitedNodes, visitedOrder);
+            if (matrixArray != null){
+                if (matrixArray[currentNode][neighbouringNode] >= 1){
+                    //checking to see if our neighbouring node has been visited
+                    if (!visitedNodes[neighbouringNode]){
+                        //if its not been visited, we add traverse down that node recursively
+                        dfsRecursiveHelper(neighbouringNode, visitedNodes, visitedOrder);
+                    }
+                }
+            } else {
+                if (matrixArrayList.get(currentNode).get(neighbouringNode)>= 1){
+                    //checking to see if our neighbouring node has been visited
+                    if (!visitedNodes[neighbouringNode]){
+                        //if its not been visited, we add traverse down that node recursively
+                        dfsRecursiveHelper(neighbouringNode, visitedNodes, visitedOrder);
+                    }
                 }
             }
         }
@@ -226,31 +249,39 @@ public class AdjacencyMatrix {
 //
 //        graph.printMatrixArray();
 //
-//        AdjacencyMatrix graph2 = new AdjacencyMatrix(true);
-//
-//        graph2.listCreateNode();
-//        graph2.listCreateNode();
-//        graph2.listCreateNode();
-//        graph2.listCreateNode();
-//
-//        graph2.listCreateEdge(0,1, 1);
-//        graph2.listCreateEdge(0,2, 1);
-//        graph2.listCreateEdge(1,2, 2);
-//        graph2.listCreateEdge(2,0, 3);
-//        graph2.listCreateEdge(2,3, 2);
-//        graph2.listCreateEdge(3,3, 1);
-//
-//
-//        System.out.println();
-//        graph2.printMatrixList();
-//        graph2.listCreateNode();
-//        graph2.listCreateEdge(4,1,2);
-//        graph2.listCreateEdge(2,4,5);
-//        System.out.println();
-//        graph2.printMatrixList();
-//        System.out.println();
-//        System.out.println("number of nodes " + graph2.numOfNodes);
+        AdjacencyMatrix graph2 = new AdjacencyMatrix(true);
 
+        graph2.listCreateNode();
+        graph2.listCreateNode();
+        graph2.listCreateNode();
+        graph2.listCreateNode();
+
+        graph2.listCreateEdge(0,1, 1);
+        graph2.listCreateEdge(0,2, 1);
+        graph2.listCreateEdge(1,2, 2);
+        graph2.listCreateEdge(2,0, 3);
+        graph2.listCreateEdge(2,3, 2);
+        graph2.listCreateEdge(3,3, 1);
+
+
+        System.out.println();
+        graph2.printMatrixList();
+        graph2.listCreateNode();
+        graph2.listCreateEdge(4,1,2);
+        graph2.listCreateEdge(2,4,5);
+        System.out.println();
+        graph2.printMatrixList();
+        System.out.println();
+        System.out.println("number of nodes " + graph2.numOfNodes);
+
+        StringBuilder graph2Traversal = new StringBuilder();
+
+        for (Integer node : graph2.dfsIterative(0)){
+            graph2Traversal.append(node).append(" ");
+        }
+
+        System.out.println("graph 2 traversal order : " + graph2Traversal);
+        System.out.println();
         AdjacencyMatrix graph3 = new AdjacencyMatrix(10,false);
         graph3.arrayAddEdge(0,1);
         graph3.arrayAddEdge(0,2);
