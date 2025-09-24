@@ -22,7 +22,7 @@ public class AdjacencyList {
 
     public void addEdge(int from, int to){
         adjacencyList.get(from).add(to);
-        if (isDirected)
+        if (!isDirected)
             adjacencyList.get(to).add(from);
     }
 
@@ -73,7 +73,7 @@ public class AdjacencyList {
                 //getting one of the neighbours from our list of neighbours
                 int currentNeighbour = currentNodesNeighbours.get(currentNeighbourIndex);
                 //checking to see if that neighbour has allready been added to the to be visited stack
-                if (!toBeVisitedStack.contains(currentNeighbour))
+                if (!(toBeVisitedStack.contains(currentNeighbour) || visitedNodeOrder.contains(currentNeighbour)))
                     // if it hasn't been added, we add it in the stack so that we can visit it later.
                     toBeVisitedStack.push(currentNeighbour);
                 //otherwise we ignore it as we will be visiting it later anyways and no need to visit it twice
@@ -106,8 +106,9 @@ public class AdjacencyList {
             //looping through all our current nodes neighbours
             for (int neighbouringNode : adjacencyList.get(currentNode)){
                 //checking to see if our current neighbouring node has been added to the to be visited queue
-                if (!toBeVisitedQueue.contains(neighbouringNode)){
-                    //if it hasnt been added, we add it in
+                // or if it has been visited allready
+                if (!toBeVisitedQueue.contains(neighbouringNode) && !visitedNodeOrder.contains(neighbouringNode)){
+                    //if it hasnt been added to the queue or visited, we add it in
                     toBeVisitedQueue.add(neighbouringNode);
                 }
                 //otherwise no point adding it in twice as we will get duplicate data by visiting it twice
@@ -178,6 +179,8 @@ public class AdjacencyList {
         graph2.addEdge(5,8);
         graph2.addEdge(7,8);
         graph2.addEdge(8,9);
+
+        graph2.displayAdjacencies();
 
 //        StringBuilder nodeOrderDfs = new StringBuilder();
 //        StringBuilder nodeOrderBfs = new StringBuilder();
