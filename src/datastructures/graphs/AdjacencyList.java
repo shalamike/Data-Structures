@@ -49,75 +49,83 @@ public class AdjacencyList {
     }
 
     public ArrayList<Integer> dfsIterative(int startNode){
-
-        // total number of nodes in the graph represented by an Adjacency List
-        int numberOfNodes = adjacencyList.size();
-
-        //A list of booleans where the index represents the node and the boolean value depicts whether the node has been visited
-        boolean[] visitedNodes = new boolean[numberOfNodes];
-
-        //An array list to store the order of visited nodes
+        // creating an arrayList that will store the traversal order of our nodes
         ArrayList<Integer> visitedNodeOrder = new ArrayList<>();
-
-        // A stack to keep track of the nodes that need to be visited
+        //creating a stack to store all the neighbours of our current node that need to be visited.
         Stack<Integer> toBeVisitedStack = new Stack<>();
-
-        //starting off the stack with our starting node
+        // adding our initial node to our to be visited stack
         toBeVisitedStack.push(startNode);
-
-        //DFS traversal begins and will only end when there are no more items in our stack
-        while(!toBeVisitedStack.isEmpty()){
-
-            //removing our current value from our stack (or the startnode assuming its only just started the dfs)
+        // begining the dfs traversal in this while loop.
+        // this while loop will keep executing as long as there is a node that has yet to be visited.
+        // Once all nodes have been visited, this while loop will terminate.
+        while (!toBeVisitedStack.isEmpty()){
+            //removing our currentNode from the stack
             int currentNode = toBeVisitedStack.pop();
-
-            // checking to see if our current node has not been visited yet
-            if (!visitedNodes[currentNode]){
-                //as we are visiting it, we change its visited boolean to true
-                visitedNodes[currentNode] = true;
-                System.out.println("visiting Node: " + currentNode);
-                // adding our visited node to our visitedNodeOrder array
-                visitedNodeOrder.add(currentNode);
-                //getting the list of all our current visited nodes neighbours.
-                LinkedList<Integer> neighbouringNodes = adjacencyList.get(currentNode);
-
-                //to add the smaller nodes first, we will add the largest numbers first
-                for (int i = neighbouringNodes.size()-1 ; i >= 0; i--){
-                    //getting the current neighbour from our current nodes list of neighbours
-                    int currentNeighbour = neighbouringNodes.get(i);
-
-                    //if the current neigbouring node has not been visited, we add that neigbour to our to be visited stack
-                    if (!visitedNodes[currentNeighbour]){
-                        toBeVisitedStack.push(currentNeighbour);
-                    }
-                }
+            //adding our current node to the visited node order list
+            visitedNodeOrder.add(currentNode);
+            // getting the list of all our current nodes neighbouring nodes
+            LinkedList<Integer> currentNodesNeighbours = adjacencyList.get(currentNode);
+            // getting the total number of neighbouring nodes
+            int numOfNeighbours = currentNodesNeighbours.size();
+            // looping backwards through all our current nodes neighbouring nodes so that we add the highest value first
+            // the reason for this is so that the lowest values will allways be removed first
+            for(int currentNeighbourIndex = numOfNeighbours - 1; currentNeighbourIndex >= 0; currentNeighbourIndex--){
+                //getting one of the neighbours from our list of neighbours
+                int currentNeighbour = currentNodesNeighbours.get(currentNeighbourIndex);
+                //checking to see if that neighbour has allready been added to the to be visited stack
+                if (!toBeVisitedStack.contains(currentNeighbour))
+                    // if it hasn't been added, we add it in the stack so that we can visit it later.
+                    toBeVisitedStack.push(currentNeighbour);
+                //otherwise we ignore it as we will be visiting it later anyways and no need to visit it twice
             }
         }
-
-        //finally we return our list of nodes in its visited order.
+        //after all the nodes has been traversed, we return the order of traversal.
         return visitedNodeOrder;
     }
 
     public ArrayList<Integer> bfsIterative(int startNode){
+
+        //creating an arrayList to store the order we visit our nodes
         ArrayList<Integer> visitedNodeOrder = new ArrayList<>();
 
-        int numOfNodes = adjacencyList.size();
-
+        //creating a Queue to store all the nodes that are yet to be visited.
         Queue<Integer> toBeVisitedQueue = new LinkedList<>();
 
+        //adding the startNode to our to be visited Queue
         toBeVisitedQueue.add(startNode);
 
+        //beginng the bfs traversal in this while loop.
+        // this while loop will keep executing as long as there is a node that has yet to be visited.
+        // Once all nodes have been visited, this while loop will terminate.
         while (!toBeVisitedQueue.isEmpty()){
+            //removing our currentNode from our to be visited Queue as its now being visited
+            //and setting it to our current node.
             int currentNode = toBeVisitedQueue.remove();
+            //adding our current node to our visitedNodeOrder ArrayList
             visitedNodeOrder.add(currentNode);
+            //looping through all our current nodes neighbours
             for (int neighbouringNode : adjacencyList.get(currentNode)){
+                //checking to see if our current neighbouring node has been added to the to be visited queue
                 if (!toBeVisitedQueue.contains(neighbouringNode)){
+                    //if it hasnt been added, we add it in
                     toBeVisitedQueue.add(neighbouringNode);
                 }
+                //otherwise no point adding it in twice as we will get duplicate data by visiting it twice
             }
         }
-
+        //once all nodes has been visited, the while loop ends and then we return the list of nodes
+        // in the order we visited them
         return visitedNodeOrder;
+    }
+
+    public String printArrayList(ArrayList<Integer> nodeOrder){
+        StringBuilder allNodesInOrder = new StringBuilder();
+
+        for(int node : nodeOrder){
+            allNodesInOrder.append(node).append(" ");
+        }
+
+        return allNodesInOrder.toString();
     }
 
     public static void main(String args[]){
@@ -171,20 +179,23 @@ public class AdjacencyList {
         graph2.addEdge(7,8);
         graph2.addEdge(8,9);
 
-        StringBuilder nodeOrderDfs = new StringBuilder();
-        StringBuilder nodeOrderBfs = new StringBuilder();
+//        StringBuilder nodeOrderDfs = new StringBuilder();
+//        StringBuilder nodeOrderBfs = new StringBuilder();
 
-        for (int node : graph2.dfsIterative(0)){
-            nodeOrderDfs.append(node).append(" ");
-        };
+//        for (int node : graph2.dfsIterative(0)){
+//            nodeOrderDfs.append(node).append(" ");
+//        };
 
-        System.out.println("dfs order traversal: " + nodeOrderDfs);
 
-        for (int node : graph2.bfsIterative(0)){
-            nodeOrderBfs.append(node).append(" ");
-        }
 
-        System.out.println("bfs order traversal: " + nodeOrderBfs);
+        System.out.println("dfs order traversal: " + graph2.printArrayList(graph2.dfsIterative(0)));
+        System.out.println("bfs order traversal: " + graph2.printArrayList(graph2.bfsIterative(0)));
+
+//        for (int node : graph2.bfsIterative(0)){
+//            nodeOrderBfs.append(node).append(" ");
+//        }
+
+//        System.out.println("bfs order traversal: " + nodeOrderBfs);
 
     }
 
