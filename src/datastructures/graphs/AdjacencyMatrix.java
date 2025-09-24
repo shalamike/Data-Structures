@@ -1,6 +1,8 @@
 package datastructures.graphs;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class AdjacencyMatrix {
@@ -88,6 +90,63 @@ public class AdjacencyMatrix {
         }
     }
 
+    public ArrayList<Integer> bfsIterative (int startNode){
+
+        //creating an array of booleans where the index of the array represents the node
+        boolean[] visited = new boolean[numOfNodes];
+
+        //creating an array list to store the order in which nodes are visited
+        ArrayList<Integer> visitedNodeOrder = new ArrayList<>();
+
+        //creating a queue to store all the nodes that are yet to be visited.
+        Queue<Integer> toBeVisitedQueue = new LinkedList<>();
+
+        //adding our initial node to our queue
+        toBeVisitedQueue.add(startNode);
+
+        //starting the bfs traversal. this will end when there are no more nodes in our queue to be visited
+        while (!toBeVisitedQueue.isEmpty()){
+            //de-queueing the current first element of the queue and setting it to be our current node.
+            //this will initially be our starting node
+            int currentNode = toBeVisitedQueue.remove();
+
+            //checking to see if our current node has not been visited. this will most likely be false by default
+            if (!visited[currentNode]){
+                System.out.println("currently on Node :" + currentNode);
+                // adding our current node to our visited node order arraylist.
+                visitedNodeOrder.add(currentNode);
+                // now looping through all links to our current node to add the neigbours to the to be visited queue
+                for (int neighbouringNode = 0; neighbouringNode < numOfNodes; neighbouringNode++){
+                    //checking to see if the adjacency matrix is a 2d array
+                    if (matrixArray != null){
+                        //checking to see if our neighbouring node has a path to our current node
+                        if (matrixArray[currentNode][neighbouringNode] >=1 ){
+                            //checking to see if our neghbouring node has been visited
+                            if(!visited[neighbouringNode]){
+                                // as we are now visiting our current node, this value is set to true
+                                visited[currentNode] = true;
+                                //if our neighbouringNode hasn't been visited, it is added to our Queue of unvisited nodes
+                                toBeVisitedQueue.add(neighbouringNode);
+
+                            }
+                        }
+                    }
+                    //otherwise its a 2d arrayList
+                    else {
+                        //checking to see if this neighbouring node has a path to our current node
+                        if(matrixArrayList.get(currentNode).get(neighbouringNode) >= 1){
+                            //checking to see if our neighbouring node has allready been visited
+                            if (!visited[neighbouringNode]){
+                                //adding the neighbouring node to the to be visited queue if it hasnt been visited.
+                                toBeVisitedQueue.add(neighbouringNode);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return visitedNodeOrder;
+    }
     public ArrayList<Integer> dfsIterative(int startNode){
 
         /*tracking the visited nodes to avoid revisiting. We use an array of booleans to keep track of our
@@ -101,7 +160,7 @@ public class AdjacencyMatrix {
         //stack to manage the Depth first seach as its Last In First Out (LIFO)
         Stack<Integer> stack = new Stack<>();
 
-        //start with any given node entered in the method parameter
+        //start with any given node entered the method parameter
         stack.push(startNode);
 
         /*
@@ -164,8 +223,8 @@ public class AdjacencyMatrix {
         boolean[] visited = new boolean[numOfNodes];
 
         System.out.println("Recursive DFS starting from Node " + startNode + ":");
+        // we begin the recursive process here
         dfsRecursiveHelper(startNode, visited, visitedOrder);
-//        System.out.println();
 
         return visitedOrder;
     }
@@ -174,11 +233,15 @@ public class AdjacencyMatrix {
         //mark our current node as been visited
         visitedNodes[currentNode] = true;
 
-        //carry out some process to our node
-//        System.out.println(currentNode + "some process");
+        //carry out some process to our node, in this case, we are adding it to our visited list
+        System.out.println("currently on Node: " + currentNode);
         visitedOrder.add(currentNode);
 
-        //visit all unvisited neighbours in the same order as our iterative approach (lowest to highest)
+        /*
+        visit all unvisited neighbours in the same order as our iterative approach (lowest to highest).
+        unlikes our iterative approach, we start our neighboring node at 0 because we will immediately travel down it.
+        Therefore, the DFS algorithm is naturally a recursive algorithm
+         */
         for (int neighbouringNode = 0; neighbouringNode <= numOfNodes -1; neighbouringNode++){
             //checking if our current node has a path to our neighbouring node
             if (matrixArray != null){
@@ -309,11 +372,18 @@ public class AdjacencyMatrix {
 
         System.out.println("DFS recursively: ");
 
-        StringBuilder visitedNodes2 = new StringBuilder();
-        for (Integer node : graph3.dfsRecursive(0)){
-            visitedNodes2.append(node).append(" ");
+        StringBuilder dfsTraversal = new StringBuilder();
+        for (Integer node : graph3.dfsIterative(0)){
+            dfsTraversal.append(node).append(" ");
         }
 
-        System.out.println(visitedNodes2);
+        System.out.println(dfsTraversal);
+
+        StringBuilder bfsTraversal = new StringBuilder();
+
+        for (Integer node : graph3.bfsIterative(0)){
+            bfsTraversal.append(node).append(" ");
+        }
+        System.out.println(bfsTraversal);
     }
 }
