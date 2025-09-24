@@ -76,24 +76,46 @@ public class AdjacencyList {
                 if (!(toBeVisitedStack.contains(currentNeighbour) || visitedNodeOrder.contains(currentNeighbour)))
                     // if it hasn't been added, we add it in the stack so that we can visit it later.
                     toBeVisitedStack.push(currentNeighbour);
-                //otherwise we ignore it as we will be visiting it later anyways and no need to visit it twice
+                //otherwise we ignore it as we will be visiting it later anyway and no need to visit it twice
             }
         }
         //after all the nodes has been traversed, we return the order of traversal.
         return visitedNodeOrder;
     }
 
-    public ArrayList<Integer> bfsIterative(int startNode){
+    public ArrayList<Integer> dfsRecursive(int startNode){
+        ArrayList<Integer> visitedNodeOrder = new ArrayList<>();
+        boolean[] visitedNodes = new boolean[adjacencyList.size()];
+        visitedNodes[startNode] = true;
+        LinkedList<Integer> neigbours = adjacencyList.get(startNode);
+        visitedNodeOrder.add(startNode);
+        int totalNeighbours = neigbours.size();
+        for (int currentNeighbour : neigbours){
+            if (!visitedNodes[currentNeighbour]){
+                dfsRecursiveHelper(currentNeighbour, visitedNodes, visitedNodeOrder);
+            }
+        }
+        return visitedNodeOrder;
+    }
+    private void dfsRecursiveHelper(int currentNode, boolean[] visitedNodes, ArrayList<Integer> visitedNodeOrder) {
+        visitedNodes[currentNode] = true;
+        visitedNodeOrder.add(currentNode);
+        LinkedList<Integer> neighbours = adjacencyList.get(currentNode);
 
+        for(Integer neighbour : neighbours){
+            if (!visitedNodes[neighbour]){
+                dfsRecursiveHelper(neighbour, visitedNodes, visitedNodeOrder);
+            }
+        }
+    }
+
+    public ArrayList<Integer> bfsIterative(int startNode){
         //creating an arrayList to store the order we visit our nodes
         ArrayList<Integer> visitedNodeOrder = new ArrayList<>();
-
         //creating a Queue to store all the nodes that are yet to be visited.
         Queue<Integer> toBeVisitedQueue = new LinkedList<>();
-
         //adding the startNode to our to be visited Queue
         toBeVisitedQueue.add(startNode);
-
         //beginng the bfs traversal in this while loop.
         // this while loop will keep executing as long as there is a node that has yet to be visited.
         // Once all nodes have been visited, this while loop will terminate.
@@ -119,7 +141,7 @@ public class AdjacencyList {
         return visitedNodeOrder;
     }
 
-    public String printArrayList(ArrayList<Integer> nodeOrder){
+    public static String printArrayList(ArrayList<Integer> nodeOrder){
         StringBuilder allNodesInOrder = new StringBuilder();
 
         for(int node : nodeOrder){
@@ -191,14 +213,16 @@ public class AdjacencyList {
 
 
 
-        System.out.println("dfs order traversal: " + graph2.printArrayList(graph2.dfsIterative(0)));
-        System.out.println("bfs order traversal: " + graph2.printArrayList(graph2.bfsIterative(0)));
+//        System.out.println("dfs order traversal: " + printArrayList(graph2.dfsIterative(0)));
+//        System.out.println("bfs order traversal: " + printArrayList(graph2.bfsIterative(0)));
 
 //        for (int node : graph2.bfsIterative(0)){
 //            nodeOrderBfs.append(node).append(" ");
 //        }
 
 //        System.out.println("bfs order traversal: " + nodeOrderBfs);
+
+        System.out.println("dfs recursive : " + printArrayList(graph2.dfsRecursive(0)));
 
     }
 
