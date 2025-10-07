@@ -1,32 +1,36 @@
-package collectionsmethods.regex;
+package regex;
 
 public class Regex {
 
     /*
-    * regular expressions are a special sequence of characthers that can help match, find or filter through other sets
-    * through the ruleset that is determined by the special sequence of characters. the rules of regular expressions can
-    * be seen below:
+    * regular expressions are a special sequence of characthers that can help match, find or filter through other
+    * sets of characters.
+    * the special sequence of characters determine the ruleset for the regular expression to follow where each character
+    * corresponds to a different rule. by combining these rulesets, we can create regular expressions that can filter
+    * through complex character sequences as shown in the examples below the rules.
+    * Below are the basic characters and rules for regular expressions
     */
 
     /*
     BASIC ELEMENTS
      */
 
-    // "." Dot matches any character
+    // "." Dot matches any character, in the method below, it checks if the string contains any single character
     public static boolean matchAnySingleCharacter(String s){
         String regex = ".";
         return s.matches(regex);
+
     }
 
-    // "^" Caret checks the begining of a string
+    // "^" Caret checks the begining of a single character is a
     public static boolean checkFirstCharacterOfStringIsA(String s){
-        String regex = "^a";
+        String regex = "^a.*";
         return s.matches(regex);
     }
 
     // $ checks the end of the string
     public static boolean checkLastCharacterOfStringIsG(String s){
-        String regex = "g$";
+        String regex = ".*g$";
         return s.matches(regex);
     }
 
@@ -91,7 +95,7 @@ public class Regex {
     if we want to match characters like ".", "*", "+" etc. we will need to escape them using a backslash "\" so that we
     can search for them instead of using them to determine rules.
 
-    However, In Java, the backslash itself is an escape character in strings so when doing regex in Java,
+    However, In Java, the backslash itself is classified as a special character in strings so when doing regex in Java,
     a double backslash "\\" is needed to be the escape character.
     This is because the second backslash escapes the first one and acts as our rule and will be the case for anything
     requiring a "\"
@@ -170,7 +174,7 @@ public class Regex {
         (\\.) ensures that the next character is a dot after the 3 w's
         [a-zA-Z0-9]{1,15} ensures that there is between 1 to 15 of any alphanumeric character
         (\\.) ensures that the next characer after the 1-15 characters is a dot "."
-        ((co\\.uk)|(com) ensures that the next characters are either co.uk or com
+        ((co\\.uk)|(com)) ensures that the next characters are either co.uk or com
          */
 
         String regex = "^(w{3})(\\.)[a-zA-Z0-9]{1,15}(\\.)((co\\.uk)|(com))";
@@ -181,7 +185,7 @@ public class Regex {
     public static boolean checkingUrl2(String s){
 
         /*
-        (https:\/\/)? checks if the there 0 or one occurance of https://
+        (https:\\/\\/)? checks if the there 0 or one occurance of https://
         (w{3}\\.)? checks if there is 0 or one occurance of www.
         [a-zA-Z0-9]+ checks if there is one or more alphanumeric characters after the optional https:// and www.
         (\\.) ensures that there is a dot followed by the alphanumeric characters
@@ -210,33 +214,70 @@ public class Regex {
         return s.matches(regex);
     }
 
+
+    /*
+    check if string contains 15 letters with the string "alan" starting at the third character and the last
+    letter is a "g"
+
+     */
+    public static boolean regexPractice1(String s){
+        //(.{3}) checks that the string contrains 3 characters of literally anything
+        //(alan) checks that the string contains the word alan
+        //(.{7}) checks that the next 7 characters of the string are literally anything
+        // g$ checks that the last character is g
+        String regex = "(.{3})(alan)(.{7})g$";
+        return s.matches(regex);
+    }
+
+
+    /*
+    check a string with atleast two characters where the first character is 'a' and the
+    last character is 'd'
+     */
+    public static boolean regexPractice2 (String s){
+        String regex = "^a.*d$";
+        return s.matches(regex);
+    }
+
+    public static boolean regexPractice3 (String s){
+        String regex = "[dg]{14}a";
+        return s.matches(regex);
+    }
+
+    public static boolean regexPractice4 (String s){
+        String regex = "((dg)|(gd)){7}a";
+        return s.matches(regex);
+    }
+
+    public static boolean regexPractice5(String s){
+        String regex = "a+d?a*d?a*d|(dd*)(a?)(d*)(a?)(d*)a";
+        return s.matches(regex);
+    }
+
+
+
+
+    //checking if a string contains up to 3 a's
+    public static boolean threeAsAnywhere(String s){
+        String regex = "(.*)(a?)(.*)(a?)(.*)(a?)(.*)";
+        return s.matches(regex);
+    }
+
+
     public static void main(String[] args){
-//        System.out.println(checkFirstLetterisAorBorC("anectdote"));
-//        System.out.println(checkIfThe3LettersAfter3rdPlaceIsBCG("xxbcg123"));
-//        System.out.println(checkIfThe3LettersAfter3rdPlaceIsBCG("asbcgerergbffgsdfsdf"));
-//        System.out.println(checkIfThe3LettersAfter3rdPlaceIsBCG("sdgfrfhstj"));
 
-//        System.out.println(beginsWithRegOrDrgMax10("reg1234567"));
-//        System.out.println(beginsWithRegOrDrgMax10("reggy"));
-//        System.out.println(beginsWithRegOrDrgMax10("reggy12345"));
-//        System.out.println(beginsWithRegOrDrgMax10("reggy1234512345"));
+//        System.out.println(regexPractice1("ghnalanaertgvcg"));
+//        System.out.println(regexPractice1("asdyola"));
 
-//        System.out.println(checkingUrl1("www.cool345sch.com"));
-//        System.out.println(checkingUrl1("www.cool345sch.co.uk"));
-//        System.out.println(checkingUrl1("wwwcool345sch.com"));
+//        System.out.println(regexPractice4("gdgdgdgdgdgdgda"));
+//        System.out.println(regexPractice4("dgdgdgdgdgdgdga"));
+//        System.out.println(regexPractice4("gggggggddddddda"));
 
-//        System.out.println(checkingUrl2("www.cool345sch.com"));
-//        System.out.println(checkingUrl2("https://www.cool345sch.com"));
-//        System.out.println(checkingUrl2("https://cool345sch.com"));
-//        System.out.println(checkingUrl2("cool345sch.com"));
-//        System.out.println(checkingUrl2("https://ww.cool345sch.com"));
-//        System.out.println(checkingUrl2("http://www.cool345sch.com"));
-
-//        System.out.println(checkingUrl3("https://www.asdgsdgs.com"));
-//        System.out.println(checkingUrl3("https://www.asdgsdgs.com/dfs/sdf"));
-//        System.out.println(checkingUrl3("http://www.asdgsdgs.com/dfs/sdf"));
-//        System.out.println(checkingUrl3("https://www.asdgsdgs.comdfssdf"));
-
-
+        System.out.println(regexPractice5("addd"));
+        System.out.println(regexPractice5("adaaaaaadaaaaaad"));
+        System.out.println(regexPractice5("daaaaadaaaaaaaaada"));
+        System.out.println(regexPractice5("adaaaaaaaaad"));
+        System.out.println(regexPractice5("dddddddddda"));
+        System.out.println(threeAsAnywhere("daddddaddddad"));
     }
 }
