@@ -288,6 +288,8 @@ public class BinarySearchTree {
 
 
 
+
+
     public static void displayTree(BinarySearchTree tree) {
         if (tree.root == null) {
             System.out.println("(empty tree)");
@@ -299,7 +301,6 @@ public class BinarySearchTree {
         queue.add(tree.root);
 
         int height = getHeight(tree.root);
-        int maxWidth = (int) Math.pow(2, height) - 1; // max nodes at bottom level
 
         int level = 0;
         while (!queue.isEmpty() && level < height) {
@@ -522,9 +523,7 @@ public class BinarySearchTree {
         tree2.insertRecursive(2);
         tree2.insertRecursive(19);
 
-
-
-
+        tree2.insertRecursive(16);
 
         //tree2.printPostorder(tree2.root);
         ArrayList<String> pathArray1 = new ArrayList<>();
@@ -540,6 +539,17 @@ public class BinarySearchTree {
         System.out.println();
 
         displayTree(tree2);
+
+
+        BinarySearchTree tree3 = new BinarySearchTree();
+
+        tree3.insertRecursive(1);
+        tree3.insertRecursive(2);
+        tree3.insertRecursive(3);
+        tree3.insertRecursive(4);
+        tree3.insertRecursive(5);
+
+        displayTree(tree3);
 
     }
 

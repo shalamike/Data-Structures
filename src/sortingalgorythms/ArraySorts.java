@@ -1,5 +1,8 @@
 package sortingalgorythms;
 
+import java.util.PriorityQueue;
+import java.util.Random;
+
 public class ArraySorts {
 
     //the bubble sort algorythm
@@ -146,20 +149,23 @@ example below:
         }
     }
 
+    /**
+     *
+     * Divide and Conquer algorythms
+     */
 
 
-
-    public static void mergeSort(int inputArr[]){
+    public static int[] mergeSort(int[] inputArr){
         int inputLength = inputArr.length;
 
         /*
         as this is a divide and conquer algorythm, we will keep splitting the array untill we cant divide it anymore.
         therefore, lets make sure our array in its current state can still be split, if not, we will return and break
-        out of the recursive loop
+        out of the recursive loop.
          */
 
         if (inputLength < 2)
-            return;
+            return inputArr;
 
         //get the haflway point of the array
         int midIndex = inputLength/2;
@@ -187,7 +193,7 @@ example below:
         mergeSort(rightHalf);
 
         /*
-        Now we have executed the "divide" part of the divide and conquer merge sort algorythm.
+        This is the "divide" of our divide and conquer algorythm.
         To demonstrate the current operation, lets say our input array known as inputArr is [ 3, 6, 2, 4, 1, 5, 9].
         when we call mergSort on our input array as shown below:
 
@@ -288,11 +294,11 @@ example below:
         two arrays. As mentioned before, this is also why we divided the array down to single elements as
         single element arrays are always sorted by default.
          */
-
+        return inputArr;
     }
 
 
-    private static void merge(int[] toBeMerged, int[] leftHalf, int[] rightHalf){
+    private static int[] merge(int[] toBeMerged, int[] leftHalf, int[] rightHalf){
         /*
         Now we are in the merge part of the mergeSort algorythm or the Conquer part of this divide and conquer algorythm.
         this part works by essentially comparing elements of both the left half and right half of the arrays and then
@@ -356,6 +362,274 @@ example below:
         line 311 would have terminated once one pointer reached the end of its array.
          */
 
+        return toBeMerged;
+    }
+
+    public static void quickSortPoorPivot(int[] inputArr){
+        /*
+    The quicksort algorythm is another divide and conquer algorythm similar to merge sort. However, unlike merge sort
+    where all the sorting occurs when we begin to merge all our single element arrays which leads to sorte arrays,
+    quickSort sorts elements by choosing a "pivot". then it partitions the array into these elements:
+
+    - Left side of pivot: smaller than pivot value
+    - right side of pivot: larged than pivot value
+
+    after we put our into each partion, we then recursively sort the left and right sides of the array.
+     */
+
+        int startIndex = 0;
+        int endIndex = inputArr.length -1;
+
+        quickSortPoorPivotRecursiveHelper(inputArr, startIndex, endIndex);
+
+    }
+
+    private static void quickSortPoorPivotRecursiveHelper(int[] inputArr, int currentStartIndex, int currentLastIndex){
+        //base case: if the current array has one or zero elements, its allready sorted
+        if (currentStartIndex >= currentLastIndex) {
+            return;
+        }
+
+        //Step 1; We split the array using the partition method below:
+
+        int pivotIndex = partitionWithPoorPivot(inputArr, currentStartIndex, currentLastIndex);
+
+         /*
+        At this point, all elements to the left of the pivot are <= pivot,
+        and all elements to the right are >= pivot.
+
+        Example:
+            Original: [5, 2, 8, 4, 7]
+                        ^        ^
+                     start     end
+
+            After partitioning (pivot = 7):
+            Result:   [5, 2, 4, 7, 8]
+                              ^
+                           pivotIndex
+
+        Now we recursively apply quicksort to the left and right sides (excluding the pivot)
+        */
+
+        quickSortPoorPivotRecursiveHelper(inputArr, currentStartIndex, pivotIndex - 1);  // sort left side
+        quickSortPoorPivotRecursiveHelper(inputArr, pivotIndex + 1, currentLastIndex);    // sort right side
+
+    }
+
+
+    private static int partitionWithPoorPivot(int[] currentArray, int currentStartPos, int currentEndPos){
+        /*
+        the partition method is where we perform the partition step of the quick sort where
+        we split the array into two sections: values smaller than the pivot and values larger
+
+        To achieve this we select a pivot point to partition the array into. this is the most crucial step as a bad
+        pivot will lead to poor performance (o(n^2)).
+        in this example we will use a terrible pivot to demonstrate how performance can be affected by poor pivoting
+        strategies by setting our pivot at the end of the array:
+         */
+        int pivot = currentArray[currentEndPos];  // pivot value
+        int smallerThanPivot = currentStartPos - 1;     // index of the the current element thats smaller than our pivot
+
+        /*
+         arr = [3, 7, 8, 5, 2, 1, 4]
+                         ^        ^
+                        start   pivot (end)
+
+        We will then loop from the currentStartPos to currentEndPos:
+            - If element < pivot → move it to the left side
+            - Use `i` to track boundary of "smaller than pivot" section
+         */
+
+        for (int largerThanPivot = currentStartPos; largerThanPivot < currentEndPos; largerThanPivot++){
+            if (currentArray[largerThanPivot] <= pivot){
+                smallerThanPivot++; // move boundary to right
+                //swap smallerThanPivot index with largerTHanPivotIndex
+                int tempValue = currentArray[smallerThanPivot];
+                currentArray[smallerThanPivot] = currentArray[largerThanPivot];
+                currentArray[largerThanPivot] = tempValue;
+            }
+        }
+        /*
+        after this loop, the index "smallerThanPivot" is the last smaller element in the array.
+        now e place the pivot in its correct sorted positon
+         */
+
+        int temp = currentArray[smallerThanPivot + 1];
+        currentArray[smallerThanPivot + 1] = currentArray[currentEndPos];
+        currentArray[currentEndPos] = temp;
+
+        return smallerThanPivot + 1;
+    }
+    /************************************************************************************************************************/
+    /*
+    now we have an understanding of how quick sort will sort the array. But the algorythm above is a very poor
+    implementation of quicksort.
+    This is because a good pivot will split the array into balanced halves while this pivot will is set to the
+    end of the array. therefore checking each and every individual element to see if its bigger than our pivot.
+     */
+
+    public static void quickSortUsingRandomPivot(int[] inputArr) {
+        int startIndex = 0;
+        int endIndex = inputArr.length - 1;
+        quickSortRandomPivotRecursiveHelper(inputArr, startIndex, endIndex);
+    }
+
+    private static void quickSortRandomPivotRecursiveHelper(int[] inputArr, int currentStartIndex, int currentLastIndex) {
+        // Base case: if the current array has one or zero elements, it's already sorted
+        if (currentStartIndex >= currentLastIndex) {
+            return;
+        }
+
+        int pivotIndex = partitionWithRandomNumber(inputArr, currentStartIndex, currentLastIndex);
+
+        quickSortRandomPivotRecursiveHelper(inputArr, currentStartIndex, pivotIndex - 1);  // sort left side
+        quickSortRandomPivotRecursiveHelper(inputArr, pivotIndex + 1, currentLastIndex);   // sort right side
+    }
+
+    private static int partitionWithRandomNumber(int[] currentArray, int currentStartPos, int currentEndPos) {
+        /*
+        In this version, instead of always using the last element as pivot, we randomly select a pivot.
+        This helps improve average performance and prevents O(n²) degradation on already-sorted input.
+        */
+
+        // Step 1: Choose a random pivot index between start and end
+        Random rand = new Random();
+        int pivotIndex = currentStartPos + rand.nextInt(currentEndPos - currentStartPos + 1);
+
+        // Step 2: Swap the randomly chosen pivot with the last element and then continue as we did in the previous quicksort
+        int temp = currentArray[pivotIndex];
+        currentArray[pivotIndex] = currentArray[currentEndPos];
+        currentArray[currentEndPos] = temp;
+
+
+        int pivot = currentArray[currentEndPos];  // pivot value
+        int smallerThanPivot = currentStartPos - 1;  // boundary for smaller values
+
+
+        for (int largerThanPivot = currentStartPos; largerThanPivot < currentEndPos; largerThanPivot++) {
+            if (currentArray[largerThanPivot] <= pivot) {
+                smallerThanPivot++;
+
+                int tempValue = currentArray[smallerThanPivot];
+                currentArray[smallerThanPivot] = currentArray[largerThanPivot];
+                currentArray[largerThanPivot] = tempValue;
+            }
+        }
+
+        // Step 3: Swap pivot to its correct sorted position
+        temp = currentArray[smallerThanPivot + 1];
+        currentArray[smallerThanPivot + 1] = currentArray[currentEndPos];
+        currentArray[currentEndPos] = temp;
+
+        return smallerThanPivot + 1;  // Return the final pivot index
+    }
+
+    /************************************************************************************************************************/
+
+    public static void quickSortUsingMedianOf3(int[] inputArr) {
+        int startIndex = 0;
+        int endIndex = inputArr.length - 1;
+        quickSortUsingMedianOf3RecursiveHelper(inputArr, startIndex, endIndex);
+    }
+
+    private static void quickSortUsingMedianOf3RecursiveHelper(int[] inputArr, int currentStartIndex, int currentLastIndex) {
+        // Base case: if the current array has one or zero elements, it's already sorted
+        if (currentStartIndex >= currentLastIndex) {
+            return;
+        }
+
+        // Step 1: We split the array using the partition method below:
+        int pivotIndex = partitionUsingMedianOf3(inputArr, currentStartIndex, currentLastIndex);
+
+        quickSortUsingMedianOf3RecursiveHelper(inputArr, currentStartIndex, pivotIndex - 1);  // sort left side
+        quickSortUsingMedianOf3RecursiveHelper(inputArr, pivotIndex + 1, currentLastIndex);   // sort right side
+    }
+
+    private static int partitionUsingMedianOf3(int[] currentArray, int currentStartPos, int currentEndPos) {
+        /*
+        In this version, we use the Median-of-Three pivot strategy.
+        the reason why we use median of three is because we want to choose a pivot that is:
+        not too small
+        not too large
+        but somewhere in the middle of the current subarray.
+         */
+
+        // Step 1: Find the median of first, middle, and last elements
+        int mid = currentStartPos + (currentEndPos - currentStartPos) / 2;
+        int startVal = currentArray[currentStartPos];
+        int midVal = currentArray[mid];
+        int endVal = currentArray[currentEndPos];
+
+        /*
+        now we have the indicies and the values of items in those indexes in the array, we extract 3
+        possible candidates for our median. e.g.
+
+        [8, 3, 1, 7, 0, 10, 2]
+         ^        ^         ^
+        start    mid       end
+
+        to find the medain without sortig we simply compare the 3 values
+         */
+        int pivotIndex;
+
+        // first we check if start val is greater than the mid val but less than the small value
+        if ((startVal > midVal) && (startVal < endVal)) {
+            pivotIndex = currentStartPos; // if it is then it becomes our pivot as its the median
+        }
+        //otherwise we check our mid value
+        else if ((midVal > startVal) && (midVal < endVal)) {
+            pivotIndex = mid;
+        }// otherwise our end position is the median value of the 3 values.
+        else {
+            pivotIndex = currentEndPos;
+        }
+
+        // Step 2: Swap chosen pivot to the end
+        int temp = currentArray[pivotIndex];
+        currentArray[pivotIndex] = currentArray[currentEndPos];
+        currentArray[currentEndPos] = temp;
+
+        // Now proceed with Lomuto partitionin by placing our pivot to the last value of the array
+        int pivot = currentArray[currentEndPos];  // pivot value
+        int smallerThanPivot = currentStartPos - 1;
+
+        for (int j = currentStartPos; j < currentEndPos; j++) {
+            if (currentArray[j] <= pivot) {
+                smallerThanPivot++;
+                int tempVal = currentArray[smallerThanPivot];
+                currentArray[smallerThanPivot] = currentArray[j];
+                currentArray[j] = tempVal;
+            }
+        }
+
+        //after shifiting all values to their correct side, we reposition the picot to be at the middle.
+        temp = currentArray[smallerThanPivot + 1];
+        currentArray[smallerThanPivot + 1] = currentArray[currentEndPos];
+        currentArray[currentEndPos] = temp;
+
+        return smallerThanPivot + 1;  // final sorted index of pivot
+    }
+
+/********************************************************************************************************/
+
+    public static void heapSort(int[] inputArray){
+
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();// a priority queue is a min-heap
+
+        //first we insert all items into our minheap / priority queue
+
+        for (int num : inputArray){
+            priorityQueue.add(num);
+        }
+
+        /*
+        as a priority queue stores the smallest element on the root of the tree, we just keep polling the heap and
+        adding that removed value to our array.
+         */
+        int arrIndex = 0;
+        while (!priorityQueue.isEmpty()){
+            inputArray[arrIndex++] = priorityQueue.poll();
+        }
     }
 
 }
